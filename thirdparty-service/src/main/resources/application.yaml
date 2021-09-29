@@ -1,0 +1,43 @@
+#ribbon.ReadTimeout = 5000
+#ribbon.ConnectTimeout = 5000
+#hystrix.command.default.execution.timeout.enabled = true
+#hystrix.command.default.isolation.thread.timeoutInMilliseconds = 9000
+server:
+  port: 10003
+spring:
+  datasource:
+    tomcat:
+      max-wait: 14400
+      max-active: 500
+      min-idle: 2
+      initial-size: 10
+    password: ve2021.Ve
+    username: postgres
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://192.168.1.104:10101/local?useSSL=false&seUnicode=true&characterEncoding=UTF-8
+    platform: postgres
+  servlet:
+    multipart:
+      max-request-size: 50MB
+      max-file-size: 50MB
+  main:
+    allow-bean-definition-overriding: true
+  rabbitmq:
+    host: 192.168.1.104
+    port: 10102
+    username: admin
+    password: admin
+    virtual-host: ${spring.profiles.active}
+  redis:
+    jedis:
+      pool:
+        min-idle: 2
+        max-idle: 10
+        max-active: 250
+    timeout: 2000
+    password:
+    port: 10103
+    host: 192.168.1.104
+mybatis:
+  mapper-locations: classpath:mapper/**/*.xml
+  type-aliases-package: cn.ve.thirdparty.dal.entity

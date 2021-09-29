@@ -1,0 +1,7 @@
+spring:
+  cloud:
+    nacos:
+      discovery:
+        namespace: local
+      config:
+        namespace: ${spring.cloud.nacos.discovery.namespace}
