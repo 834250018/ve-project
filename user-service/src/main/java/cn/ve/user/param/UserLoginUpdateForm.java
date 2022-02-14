@@ -1,7 +1,5 @@
 package cn.ve.user.param;
 
-import java.util.Date;
-
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.EqualsAndHashCode;

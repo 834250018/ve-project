@@ -3,31 +3,29 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <artifactId>ve-project</artifactId>
+        <artifactId>infrastructure</artifactId>
         <groupId>cn.ve</groupId>
         <version>1.0-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
-    <modules>
-        <module>ve-job</module>
-        <module>ve-rabbitmq</module>
-        <module>ve-redis</module>
-        <module>ve-rest</module>
-        <module>ve-file</module>
-        <module>ve-feign</module>
-        <module>ve-base</module>
-    </modules>
 
-    <packaging>pom</packaging>
-
-    <artifactId>infrastructure</artifactId>
+    <packaging>jar</packaging>
+    <artifactId>ve-feign</artifactId>
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
     </properties>
-    <dependencies>
 
+    <dependencies>
+        <dependency>
+            <groupId>cn.ve</groupId>
+            <artifactId>ve-base</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-openfeign</artifactId>
+        </dependency>
     </dependencies>
 
 </project>

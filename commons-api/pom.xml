@@ -8,26 +8,17 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
-    <modules>
-        <module>ve-job</module>
-        <module>ve-rabbitmq</module>
-        <module>ve-redis</module>
-        <module>ve-rest</module>
-        <module>ve-file</module>
-        <module>ve-feign</module>
-        <module>ve-base</module>
-    </modules>
 
-    <packaging>pom</packaging>
-
-    <artifactId>infrastructure</artifactId>
+    <packaging>jar</packaging>
+    <artifactId>commons-api</artifactId>
+    <version>1.0-SNAPSHOT</version>
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
     </properties>
-    <dependencies>
 
+    <dependencies>
     </dependencies>
 
 </project>

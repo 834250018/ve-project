@@ -17,11 +17,6 @@
     </properties>
 
     <dependencies>
-
-        <dependency>
-            <groupId>cn.ve</groupId>
-            <artifactId>infrastructure</artifactId>
-        </dependency>
         <dependency>
             <groupId>cn.ve</groupId>
             <artifactId>user-api</artifactId>

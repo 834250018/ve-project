@@ -9,11 +9,24 @@
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
     <modules>
+        <module>commons-api</module>
         <module>commons-service</module>
+        <module>thirdparty-api</module>
         <module>thirdparty-service</module>
+        <module>message-api</module>
+        <module>message-service</module>
+        <module>user-api</module>
         <module>user-service</module>
         <module>infrastructure</module>
-        <module>user-api</module>
+<!--        <module>infrastructure/ve-base</module>-->
+<!--        <module>infrastructure/ve-feign</module>-->
+<!--        <module>infrastructure/ve-file</module>-->
+<!--        <module>infrastructure/ve-job</module>-->
+<!--        <module>infrastructure/ve-rabbitmq</module>-->
+<!--        <module>infrastructure/ve-redis</module>-->
+<!--        <module>infrastructure/ve-rest</module>-->
+        <module>gateway-service</module>
+
     </modules>
 
     <properties>
@@ -158,9 +171,60 @@
                 <version>1.2.54</version>
             </dependency>
 
+
+            <dependency>
+                <groupId>cn.ve</groupId>
+                <artifactId>ve-base</artifactId>
+                <version>1.0-SNAPSHOT</version>
+            </dependency>
+            <dependency>
+                <groupId>cn.ve</groupId>
+                <artifactId>ve-feign</artifactId>
+                <version>1.0-SNAPSHOT</version>
+            </dependency>
+            <dependency>
+                <groupId>cn.ve</groupId>
+                <artifactId>ve-file</artifactId>
+                <version>1.0-SNAPSHOT</version>
+            </dependency>
+            <dependency>
+                <groupId>cn.ve</groupId>
+                <artifactId>ve-job</artifactId>
+                <version>1.0-SNAPSHOT</version>
+            </dependency>
+            <dependency>
+                <groupId>cn.ve</groupId>
+                <artifactId>ve-rabbitmq</artifactId>
+                <version>1.0-SNAPSHOT</version>
+            </dependency>
+            <dependency>
+                <groupId>cn.ve</groupId>
+                <artifactId>ve-redis</artifactId>
+                <version>1.0-SNAPSHOT</version>
+            </dependency>
+            <dependency>
+                <groupId>cn.ve</groupId>
+                <artifactId>ve-rest</artifactId>
+                <version>1.0-SNAPSHOT</version>
+            </dependency>
             <dependency>
                 <groupId>cn.ve</groupId>
                 <artifactId>user-api</artifactId>
+                <version>1.0-SNAPSHOT</version>
+            </dependency>
+            <dependency>
+                <groupId>cn.ve</groupId>
+                <artifactId>commons-api</artifactId>
+                <version>1.0-SNAPSHOT</version>
+            </dependency>
+            <dependency>
+                <groupId>cn.ve</groupId>
+                <artifactId>message-api</artifactId>
+                <version>1.0-SNAPSHOT</version>
+            </dependency>
+            <dependency>
+                <groupId>cn.ve</groupId>
+                <artifactId>thirdparty-api</artifactId>
                 <version>1.0-SNAPSHOT</version>
             </dependency>
             <dependency>

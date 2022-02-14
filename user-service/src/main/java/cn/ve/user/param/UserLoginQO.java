@@ -1,7 +1,5 @@
 package cn.ve.user.param;
 
-import java.util.Date;
-
 import cn.ve.base.pojo.BaseQO;
 import lombok.Data;
 import lombok.EqualsAndHashCode;

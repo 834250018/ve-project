@@ -27,7 +27,7 @@ public interface StringConstant {
      * 字符串常量：双点 {@code ".."} <br>
      * 用途：作为指向上级文件夹的路径，如：{@code "../path"}
      */
-    String DOUBLE_DOT = "..";
+    String DOUBLE_DOT = "src/main";
 
     /**
      * 字符串常量：斜杠 {@code "/"}
