@@ -9,10 +9,6 @@ import lombok.experimental.SuperBuilder;
 import java.io.Serializable;
 import java.util.Date;
 
-/**
- * @author tlx
- * @date 2021/12/7 15:18
- */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

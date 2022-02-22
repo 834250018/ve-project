@@ -1,4 +1,4 @@
-package cn.ve.base.pojo;
+package cn.ve.feign.pojo;
 
 import cn.hutool.http.HttpStatus;
 import lombok.Data;

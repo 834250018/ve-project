@@ -1,6 +1,6 @@
 package cn.ve.user.controller;
 
-import cn.ve.base.pojo.CommonResult;
+import cn.ve.feign.pojo.CommonResult;
 import cn.ve.user.api.UserApi;
 import io.swagger.annotations.Api;
 import lombok.extern.slf4j.Slf4j;

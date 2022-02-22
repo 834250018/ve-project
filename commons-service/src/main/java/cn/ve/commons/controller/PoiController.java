@@ -1,9 +1,7 @@
 package cn.ve.commons.controller;
 
-import cn.ve.base.pojo.CommonResult;
 import cn.ve.commons.util.PoiUtil;
 //import cn.ve.user.api.UserApi;
-import com.alibaba.fastjson.JSON;
 import io.swagger.annotations.Api;
 import lombok.extern.slf4j.Slf4j;
 import org.hibernate.validator.constraints.NotBlank;
@@ -12,7 +10,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.IOException;
@@ -51,16 +48,6 @@ public class PoiController {
         arrayLists.add(Stream.of("1", "张三", 25).collect(Collectors.toList()));
         arrayLists.add(Stream.of("2", "李四", 30).collect(Collectors.toList()));
         PoiUtil.writeIntoResponse(res, arrayLists);
-    }
-
-//    @Resource
-//    private UserApi userApi;
-
-    @GetMapping(value = "/test")
-    public void test() {
-        log.info("进入controller");
-//        CommonResult<Boolean> test = userApi.test();
-//        log.info("远程调用返回: {}", JSON.toJSON(test));
     }
 
 }

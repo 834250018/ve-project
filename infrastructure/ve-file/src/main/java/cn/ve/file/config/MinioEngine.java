@@ -1,17 +1,15 @@
-package cn.ve.commons.util;
+package cn.ve.file.config;
 
 import io.minio.*;
 import io.minio.http.Method;
 import io.minio.messages.Item;
+import io.minio.messages.Tags;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.util.StringUtils;
 
 import java.io.*;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.List;
-import java.util.Locale;
-import java.util.UUID;
+import java.util.*;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -19,7 +17,7 @@ import java.util.concurrent.TimeUnit;
  * @date 2021年7月27日
  */
 @Slf4j
-public class MinioFileEngine {
+public class MinioEngine {
     // 公共bucket,公开权限
     public static final String TEMP_BUCKET = "temp";
     // 私有bucket,不公开权限
@@ -37,9 +35,8 @@ public class MinioFileEngine {
      * @param accessKey
      * @param secretKey
      */
-    public MinioFileEngine(String insideNetwork, String externalAddress, String defaultBucketName,
-                           String accessKey, String secretKey
-    ) {
+    public MinioEngine(String insideNetwork, String externalAddress, String defaultBucketName, String accessKey,
+        String secretKey) {
         defaultBucketName = defaultBucketName.toLowerCase(Locale.ROOT);
         //        this.allowBucketNames = Splitter.on(",").splitToList(allowBucketNames);
         // 图片压缩格式，为空则不压缩
@@ -47,7 +44,7 @@ public class MinioFileEngine {
         this.externalAddress = externalAddress;
         this.minioClient = MinioClient.builder().endpoint(insideNetwork).credentials(accessKey, secretKey).build();
         this.extMinioClient =
-                MinioClient.builder().endpoint(this.externalAddress).credentials(accessKey, secretKey).build();
+            MinioClient.builder().endpoint(this.externalAddress).credentials(accessKey, secretKey).build();
         // 检查并创建默认bucket
         checkBucket(defaultBucketName);
         setBucketPolicy(defaultBucketName, READ_ONLY);
@@ -84,19 +81,19 @@ public class MinioFileEngine {
     }
 
     private static final String READ_ONLY =
-            "{\"Version\":\"2012-10-17\",\"Statement\":[{\"Effect\":\"Allow\",\"Principal\":{\"AWS\":[\"*\"]},\"Action\":[\"s3:ListBucket\",\"s3:GetBucketLocation\"],\"Resource\":[\"arn:aws:s3:::#bucketName#\"]},{\"Effect\":\"Allow\",\"Principal\":{\"AWS\":[\"*\"]},\"Action\":[\"s3:GetObject\"],\"Resource\":[\"arn:aws:s3:::#bucketName#/*\"]}]}";
+        "{\"Version\":\"2012-10-17\",\"Statement\":[{\"Effect\":\"Allow\",\"Principal\":{\"AWS\":[\"*\"]},\"Action\":[\"s3:ListBucket\",\"s3:GetBucketLocation\"],\"Resource\":[\"arn:aws:s3:::#bucketName#\"]},{\"Effect\":\"Allow\",\"Principal\":{\"AWS\":[\"*\"]},\"Action\":[\"s3:GetObject\"],\"Resource\":[\"arn:aws:s3:::#bucketName#/*\"]}]}";
 
     private static final String WRITE_ONLY =
-            "{\"Version\":\"2012-10-17\",\"Statement\":[{\"Effect\":\"Allow\",\"Principal\":{\"AWS\":[\"*\"]},\"Action\":[\"s3:ListBucketMultipartUploads\",\"s3:GetBucketLocation\"],\"Resource\":[\"arn:aws:s3:::#bucketName#\"]},{\"Effect\":\"Allow\",\"Principal\":{\"AWS\":[\"*\"]},\"Action\":[\"s3:PutObject\",\"s3:AbortMultipartUpload\",\"s3:DeleteObject\",\"s3:ListMultipartUploadParts\"],\"Resource\":[\"arn:aws:s3:::#bucketName#/*\"]}]}";
+        "{\"Version\":\"2012-10-17\",\"Statement\":[{\"Effect\":\"Allow\",\"Principal\":{\"AWS\":[\"*\"]},\"Action\":[\"s3:ListBucketMultipartUploads\",\"s3:GetBucketLocation\"],\"Resource\":[\"arn:aws:s3:::#bucketName#\"]},{\"Effect\":\"Allow\",\"Principal\":{\"AWS\":[\"*\"]},\"Action\":[\"s3:PutObject\",\"s3:AbortMultipartUpload\",\"s3:DeleteObject\",\"s3:ListMultipartUploadParts\"],\"Resource\":[\"arn:aws:s3:::#bucketName#/*\"]}]}";
 
     private static final String READ_WRITE =
-            "{\"Version\":\"2012-10-17\",\"Statement\":[{\"Effect\":\"Allow\",\"Principal\":{\"AWS\":[\"*\"]},\"Action\":[\"s3:ListBucketMultipartUploads\",\"s3:GetBucketLocation\",\"s3:ListBucket\"],\"Resource\":[\"arn:aws:s3:::#bucketName#\"]},{\"Effect\":\"Allow\",\"Principal\":{\"AWS\":[\"*\"]},\"Action\":[\"s3:AbortMultipartUpload\",\"s3:DeleteObject\",\"s3:GetObject\",\"s3:ListMultipartUploadParts\",\"s3:PutObject\"],\"Resource\":[\"arn:aws:s3:::#bucketName#/*\"]}]}";
+        "{\"Version\":\"2012-10-17\",\"Statement\":[{\"Effect\":\"Allow\",\"Principal\":{\"AWS\":[\"*\"]},\"Action\":[\"s3:ListBucketMultipartUploads\",\"s3:GetBucketLocation\",\"s3:ListBucket\"],\"Resource\":[\"arn:aws:s3:::#bucketName#\"]},{\"Effect\":\"Allow\",\"Principal\":{\"AWS\":[\"*\"]},\"Action\":[\"s3:AbortMultipartUpload\",\"s3:DeleteObject\",\"s3:GetObject\",\"s3:ListMultipartUploadParts\",\"s3:PutObject\"],\"Resource\":[\"arn:aws:s3:::#bucketName#/*\"]}]}";
 
     private void setBucketPolicy(String bucketName, String config) {
         try {
             minioClient.setBucketPolicy(
-                    SetBucketPolicyArgs.builder().bucket(bucketName).config(config.replace("#bucketName#", bucketName))
-                            .build());
+                SetBucketPolicyArgs.builder().bucket(bucketName).config(config.replace("#bucketName#", bucketName))
+                    .build());
         } catch (Exception e) {
             log.error("minio服务异常【{}】", e.getMessage(), e);
             throw new RuntimeException("minio服务异常");
@@ -110,8 +107,8 @@ public class MinioFileEngine {
      */
     public void clearTempBucket(Date date) {
         Iterable<Result<Item>> results = minioClient.listObjects(
-                ListObjectsArgs.builder().bucket(TEMP_BUCKET).prefix(new SimpleDateFormat("yyyyMMdd").format(date) + "/")
-                        .recursive(true).build());
+            ListObjectsArgs.builder().bucket(TEMP_BUCKET).prefix(new SimpleDateFormat("yyyyMMdd").format(date) + "/")
+                .recursive(true).build());
         results.forEach(itemResult -> {
             Item item;
             try {
@@ -122,7 +119,7 @@ public class MinioFileEngine {
             }
             try {
                 minioClient
-                        .removeObject(RemoveObjectArgs.builder().bucket(TEMP_BUCKET).object(item.objectName()).build());
+                    .removeObject(RemoveObjectArgs.builder().bucket(TEMP_BUCKET).object(item.objectName()).build());
             } catch (Exception e) {
                 log.error("minio服务异常【{}】", e.getMessage(), e);
                 throw new RuntimeException("minio服务异常");
@@ -130,27 +127,27 @@ public class MinioFileEngine {
         });
     }
 
-    public String upload(String bucketName,  File file) {
-        return overrideUpload(bucketName,  getUUID(), file);
+    public String upload(String bucketName, File file) {
+        return overrideUpload(bucketName, getUUID(), file);
     }
 
     private String getUUID() {
         return UUID.randomUUID().toString().replaceAll("-", "");
     }
 
-    public String upload(String bucketName,  byte[] data) {
-        return overrideUpload(bucketName,  getUUID(), data);
+    public String upload(String bucketName, byte[] data) {
+        return overrideUpload(bucketName, getUUID(), data);
     }
 
-    public String upload(String bucketName,  InputStream in) {
-        return overrideUpload(bucketName,  getUUID(), in);
+    public String upload(String bucketName, InputStream in) {
+        return overrideUpload(bucketName, getUUID(), in);
     }
 
     public String getPath(String fileName) {
         return externalAddress + CATALOG_SEPARATOR + defaultBucketName + CATALOG_SEPARATOR + fileName;
     }
 
-    public String overrideUpload(String bucketName,  String fileKey, File file) {
+    public String overrideUpload(String bucketName, String fileKey, File file) {
         String catalog = "yyyyMMdd";
         bucketName = StringUtils.isEmpty(bucketName) ? defaultBucketName : bucketName;
         //        if (!existsConfig(allowBucketNames, bucketName)) {
@@ -158,9 +155,9 @@ public class MinioFileEngine {
         //        }
         try {
             FileInputStream fis = new FileInputStream(file);
-            ObjectWriteResponse resp = minioClient.putObject(PutObjectArgs.builder().bucket(bucketName)
-                    .object(catalog + CATALOG_SEPARATOR + fileKey + ".xx").stream(fis, file.length(), -1)
-                    .build());
+            ObjectWriteResponse resp = minioClient.putObject(
+                PutObjectArgs.builder().bucket(bucketName).object(catalog + CATALOG_SEPARATOR + fileKey + ".xx")
+                    .stream(fis, file.length(), -1).build());
             fis.close();
             return externalAddress + CATALOG_SEPARATOR + bucketName + CATALOG_SEPARATOR + resp.object();
         } catch (Exception e) {
@@ -195,15 +192,15 @@ public class MinioFileEngine {
     public String getPreSignFileUrl(String bucketName, String uri, int duration, TimeUnit unit) {
         try {
             return extMinioClient.getPresignedObjectUrl(
-                    GetPresignedObjectUrlArgs.builder().bucket(bucketName).object(uri).method(Method.GET)
-                            .expiry(duration, unit).build());
+                GetPresignedObjectUrlArgs.builder().bucket(bucketName).object(uri).method(Method.GET)
+                    .expiry(duration, unit).build());
         } catch (Exception e) {
             log.error("minio服务异常【{}】", e.getMessage(), e);
             throw new RuntimeException("minio服务异常");
         }
     }
 
-    public String overrideUpload(String bucketName,  String fileKey, byte[] data) {
+    public String overrideUpload(String bucketName, String fileKey, byte[] data) {
         String catalog = "yyyyMMdd";
         bucketName = StringUtils.isEmpty(bucketName) ? defaultBucketName : bucketName;
         //        if (!existsConfig(allowBucketNames, bucketName)) {
@@ -211,9 +208,9 @@ public class MinioFileEngine {
         //        }
         try {
             ByteArrayInputStream bis = new ByteArrayInputStream(data);
-            ObjectWriteResponse resp = minioClient.putObject(PutObjectArgs.builder().bucket(bucketName)
-                    .object(catalog + CATALOG_SEPARATOR + fileKey + ".xx").stream(bis, data.length, -1)
-                    .build());
+            ObjectWriteResponse resp = minioClient.putObject(
+                PutObjectArgs.builder().bucket(bucketName).object(catalog + CATALOG_SEPARATOR + fileKey + ".xx")
+                    .stream(bis, data.length, -1).build());
             bis.close();
             return externalAddress + CATALOG_SEPARATOR + bucketName + CATALOG_SEPARATOR + resp.object();
         } catch (Exception e) {
@@ -272,7 +269,7 @@ public class MinioFileEngine {
         return Boolean.FALSE;
     }
 
-    public String overrideUpload(String bucketName,  String fileKey, InputStream is) {
+    public String overrideUpload(String bucketName, String fileKey, InputStream is) {
         bucketName = StringUtils.isEmpty(bucketName) ? defaultBucketName : bucketName;
         File tempFile;
         try {
@@ -285,6 +282,53 @@ public class MinioFileEngine {
             log.error("文件输入流异常【{}】", e.getMessage(), e);
             throw new RuntimeException("文件输入流异常");
         }
-        return overrideUpload(bucketName,  fileKey, tempFile);
+        return overrideUpload(bucketName, fileKey, tempFile);
     }
+
+    /**
+     * @param bucketName
+     * @param uri        = catalog + fileKey + fileType
+     * @return
+     */
+    public Tags getFileTag(String bucketName, String uri) {
+        try {
+            return minioClient.getObjectTags(GetObjectTagsArgs.builder().bucket(bucketName).object(uri).build());
+        } catch (Exception e) {
+            log.error("minio服务异常【{}】", e.getMessage(), e);
+            throw new RuntimeException("minio服务异常");
+        }
+    }
+
+    /**
+     * @param bucketName
+     * @param uri        = catalog + fileKey + fileType
+     * @return
+     */
+    public void tagFile(String bucketName, String uri, Map<String, String> map) {
+        try {
+            minioClient.setObjectTags(SetObjectTagsArgs.builder().tags(map).bucket(bucketName).object(uri).build());
+        } catch (Exception e) {
+            log.error("minio服务异常【{}】", e.getMessage(), e);
+            throw new RuntimeException("minio服务异常");
+        }
+    }
+
+    /**
+     * @param bucketName
+     * @param uri        = catalog + fileKey + fileType
+     * @return
+     */
+    public void appendFileTag(String bucketName, String uri, Map<String, String> map) {
+        try {
+            Tags objectTags =
+                minioClient.getObjectTags(GetObjectTagsArgs.builder().bucket(bucketName).object(uri).build());
+            HashMap<String, String> newTags = new HashMap<>(objectTags.get());
+            newTags.putAll(map);
+            minioClient.setObjectTags(SetObjectTagsArgs.builder().tags(newTags).bucket(bucketName).object(uri).build());
+        } catch (Exception e) {
+            log.error("minio服务异常【{}】", e.getMessage(), e);
+            throw new RuntimeException("minio服务异常");
+        }
+    }
+
 }

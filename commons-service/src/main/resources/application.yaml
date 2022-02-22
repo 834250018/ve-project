@@ -37,3 +37,11 @@ spring:
 mybatis:
   mapper-locations: classpath:mapper/**/*.xml
   type-aliases-package: cn.ve.commons.dal.entity
+
+minio:
+  #内网传输地址
+  local-url: http://0.0.0.0:9001
+  #外网访问地址
+  url: https://devminio.bnhl8.com
+  access-key: minio
+  secret-key:
