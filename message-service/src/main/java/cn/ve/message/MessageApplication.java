@@ -7,7 +7,6 @@ import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import javax.annotation.Resource;
@@ -24,8 +23,6 @@ public class MessageApplication implements CommandLineRunner {
 
     @Resource
     private RabbitTemplate rabbitTemplate;
-    @Resource
-    private RedisTemplate<String, Object> redisTemplate;
 
     @Override
     public void run(String... args) throws Exception {

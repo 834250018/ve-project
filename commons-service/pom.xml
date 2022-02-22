@@ -46,6 +46,18 @@
             <groupId>org.apache.poi</groupId>
             <artifactId>poi-ooxml-schemas</artifactId>
         </dependency>
+        <dependency>
+            <groupId>cn.ve</groupId>
+            <artifactId>ve-rest</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>cn.ve</groupId>
+            <artifactId>ve-file</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>cn.ve</groupId>
+            <artifactId>ve-rabbitmq</artifactId>
+        </dependency>
 
     </dependencies>
 

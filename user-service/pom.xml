@@ -21,5 +21,13 @@
             <groupId>cn.ve</groupId>
             <artifactId>user-api</artifactId>
         </dependency>
+        <dependency>
+            <groupId>cn.ve</groupId>
+            <artifactId>ve-rest</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>cn.ve</groupId>
+            <artifactId>ve-redis</artifactId>
+        </dependency>
     </dependencies>
 </project>

@@ -1,4 +1,4 @@
-package cn.ve.base.pojo;
+package cn.ve.rabbitmq.pojo;
 
 import org.springframework.amqp.core.AmqpTemplate;
 

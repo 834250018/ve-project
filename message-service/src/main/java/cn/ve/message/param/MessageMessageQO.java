@@ -1,5 +1,6 @@
 package cn.ve.message.param;
 
+import cn.ve.rest.pojo.BaseQO;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 

@@ -22,5 +22,9 @@
             <groupId>cn.ve</groupId>
             <artifactId>ve-base</artifactId>
         </dependency>
+        <dependency>
+            <groupId>org.springframework.amqp</groupId>
+            <artifactId>spring-rabbit</artifactId>
+        </dependency>
     </dependencies>
 </project>

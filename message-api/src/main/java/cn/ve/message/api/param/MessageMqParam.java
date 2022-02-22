@@ -1,7 +1,7 @@
 package cn.ve.message.api.param;
 
 import cn.ve.base.constant.MqConstant;
-import cn.ve.base.pojo.BaseMqParam;
+import cn.ve.rabbitmq.pojo.BaseMqParam;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.amqp.core.AmqpTemplate;

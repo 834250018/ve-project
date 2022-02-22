@@ -1,9 +1,5 @@
-#ribbon.ReadTimeout = 5000
-#ribbon.ConnectTimeout = 5000
-#hystrix.command.default.execution.timeout.enabled = true
-#hystrix.command.default.isolation.thread.timeoutInMilliseconds = 9000
 server:
-  port: 10002
+  port: 10001
 spring:
   datasource:
     tomcat:

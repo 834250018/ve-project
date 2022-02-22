@@ -1,7 +1,7 @@
-package cn.ve.base.util;
+package cn.ve.rest.util;
 
-
-import cn.ve.base.pojo.BaseQO;
+import cn.ve.base.util.StringConstant;
+import cn.ve.rest.pojo.BaseQO;
 
 import java.io.OutputStream;
 import java.lang.reflect.Field;

@@ -21,6 +21,12 @@
             <groupId>cn.ve</groupId>
             <artifactId>ve-base</artifactId>
         </dependency>
+
+        <!-- minio文件上传-->
+        <dependency>
+            <groupId>io.minio</groupId>
+            <artifactId>minio</artifactId>
+        </dependency>
     </dependencies>
 
 </project>

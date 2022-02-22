@@ -1,5 +1,5 @@
 server:
-  port: 10005
+  port: 10000
 spring:
   datasource:
     tomcat:
@@ -8,9 +8,9 @@ spring:
       min-idle: 2
       initial-size: 10
     username: postgres
-    password: TpzS5zHVnPSF
+    password: ve2021.Ve
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://0.0.0.0:20102/saas-dev?useSSL=false&seUnicode=true&characterEncoding=UTF-8
+    url: jdbc:postgresql://192.168.1.104:10101/local?useSSL=false&seUnicode=true&characterEncoding=UTF-8
     platform: postgres
   servlet:
     multipart:
@@ -36,4 +36,4 @@ spring:
     host: 192.168.1.104
 mybatis:
   mapper-locations: classpath:mapper/**/*.xml
-  type-aliases-package: cn.ve.user.dal.entity
+  type-aliases-package: cn.ve.gateway.dal.entity

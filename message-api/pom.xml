@@ -23,6 +23,10 @@
             <groupId>cn.ve</groupId>
             <artifactId>ve-feign</artifactId>
         </dependency>
+        <dependency>
+            <groupId>cn.ve</groupId>
+            <artifactId>ve-rabbitmq</artifactId>
+        </dependency>
     </dependencies>
 
 </project>

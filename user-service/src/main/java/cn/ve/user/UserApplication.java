@@ -11,7 +11,6 @@ import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.util.CollectionUtils;
 
@@ -35,15 +34,15 @@ public class UserApplication implements CommandLineRunner {
     private UserLoginRelationMapper userLoginRelationMapper;
     @Resource
     private UserUserMapper userUserMapper;
-//    @Resource
-//    private RedisTemplate<String, Object> redisTemplate;
+    //    @Resource
+    //    private RedisTemplate<String, Object> redisTemplate;
 
     @Override
     public void run(String... args) throws Exception {
         // 测试数据库
-//        checkAdminExists("root");
+        //        checkAdminExists("root");
         // 测试redis
-//        redisTemplate.opsForValue().set("1", "2");
+        //        redisTemplate.opsForValue().set("1", "2");
     }
 
     private void checkAdminExists(String username) throws Exception {
