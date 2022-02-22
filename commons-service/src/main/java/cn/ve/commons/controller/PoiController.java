@@ -2,7 +2,7 @@ package cn.ve.commons.controller;
 
 import cn.ve.base.pojo.CommonResult;
 import cn.ve.commons.util.PoiUtil;
-import cn.ve.user.api.UserApi;
+//import cn.ve.user.api.UserApi;
 import com.alibaba.fastjson.JSON;
 import io.swagger.annotations.Api;
 import lombok.extern.slf4j.Slf4j;
@@ -53,14 +53,14 @@ public class PoiController {
         PoiUtil.writeIntoResponse(res, arrayLists);
     }
 
-    @Resource
-    private UserApi userApi;
+//    @Resource
+//    private UserApi userApi;
 
     @GetMapping(value = "/test")
     public void test() {
         log.info("进入controller");
-        CommonResult<Boolean> test = userApi.test();
-        log.info("远程调用返回: {}", JSON.toJSON(test));
+//        CommonResult<Boolean> test = userApi.test();
+//        log.info("远程调用返回: {}", JSON.toJSON(test));
     }
 
 }

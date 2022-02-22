@@ -1,0 +1,11 @@
+spring:
+  cloud:
+    nacos:
+      config:
+        server-addr: :20103
+      discovery:
+        server-addr: ${spring.cloud.nacos.config.server-addr}
+  application:
+    name: message
+  profiles:
+    active: local

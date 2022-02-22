@@ -28,14 +28,14 @@ public interface MqConstant {
     /**
      * 系统消息队列
      */
-    String ALL2MESSAGE_SYSTEM_ALERT_QUEUE = "all2message_system_alert_queue";
+    String ALL2MESSAGE_MESSAGE_QUEUE = "all2message_message_queue";
     /**
      * 系统消息交换器
      */
-    String ALL2MESSAGE_SYSTEM_ALERT_EXCHANGE = "all2message_system_alert_exchange";
+    String ALL2MESSAGE_MESSAGE_EXCHANGE = "all2message_message_exchange";
     /**
      * 系统消息路由Key
      */
-    String ALL2MESSAGE_SYSTEM_ALERT_ROUTING_KEY = "all2message_system_alert_routing_key";
+    String ALL2MESSAGE_MESSAGE_ROUTING_KEY = "all2message_message_routing_key";
 
 }

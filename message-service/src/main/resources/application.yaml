@@ -1,5 +1,5 @@
 server:
-  port: 10001
+  port: 10002
 spring:
   datasource:
     tomcat:
@@ -36,4 +36,4 @@ spring:
     host: 192.168.1.104
 mybatis:
   mapper-locations: classpath:mapper/**/*.xml
-  type-aliases-package: cn.ve.user.dal.entity
+  type-aliases-package: cn.ve.message.dal.entity

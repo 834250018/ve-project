@@ -27,8 +27,8 @@ import java.util.UUID;
 @MapperScan({"cn.ve.user.dal.mapper"})
 @SpringBootApplication
 @EnableTransactionManagement // 开启事务
-@EnableDiscoveryClient // 开启注册发现
-@EnableFeignClients(basePackages = {"cn.ve"})
+//@EnableDiscoveryClient // 开启注册发现
+//@EnableFeignClients(basePackages = {"cn.ve"})
 public class UserApplication implements CommandLineRunner {
     public static void main(String[] args) {
         SpringApplication.run(UserApplication.class, args);

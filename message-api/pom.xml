@@ -19,6 +19,10 @@
     </properties>
 
     <dependencies>
+        <dependency>
+            <groupId>cn.ve</groupId>
+            <artifactId>ve-feign</artifactId>
+        </dependency>
     </dependencies>
 
 </project>

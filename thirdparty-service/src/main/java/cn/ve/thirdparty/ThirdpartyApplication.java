@@ -10,8 +10,8 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @MapperScan({"cn.ve.thirdparty.dal.mapper"})
 @SpringBootApplication
 @EnableTransactionManagement // 开启事务
-@EnableDiscoveryClient // 开启注册发现
-@EnableFeignClients(basePackages = {"cn.ve"})
+//@EnableDiscoveryClient // 开启注册发现
+//@EnableFeignClients(basePackages = {"cn.ve"})
 public class ThirdpartyApplication {
     public static void main(String[] args) {
         SpringApplication.run(ThirdpartyApplication.class, args);
