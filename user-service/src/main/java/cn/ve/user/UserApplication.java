@@ -2,18 +2,15 @@ package cn.ve.user;
 
 import cn.hutool.core.codec.Base64Encoder;
 import cn.ve.base.util.PasswordUtils;
-import cn.ve.user.dal.entity.UserLogin;
+import cn.ve.user.dal.entity.UserLoginRelation;
 import cn.ve.user.dal.entity.UserUser;
-import cn.ve.user.dal.mapper.ext.UserLoginExtMapper;
-import cn.ve.user.dal.mapper.ext.UserUserExtMapper;
-import cn.ve.user.param.SystemAlertMqParam;
+import cn.ve.user.dal.mapper.UserLoginRelationMapper;
+import cn.ve.user.dal.mapper.UserUserMapper;
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import org.mybatis.spring.annotation.MapperScan;
-import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
-import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.util.CollectionUtils;
@@ -35,31 +32,25 @@ public class UserApplication implements CommandLineRunner {
     }
 
     @Resource
-    private UserLoginExtMapper userLoginExtMapper;
+    private UserLoginRelationMapper userLoginRelationMapper;
     @Resource
-    private UserUserExtMapper userUserExtMapper;
-    @Resource
-    private RabbitTemplate rabbitTemplate;
-    @Resource
-    private RedisTemplate<String, Object> redisTemplate;
+    private UserUserMapper userUserMapper;
+//    @Resource
+//    private RedisTemplate<String, Object> redisTemplate;
 
     @Override
     public void run(String... args) throws Exception {
         // 测试数据库
-        checkAdminExists("root");
-        // 测试mq
-        SystemAlertMqParam systemAlertMqParam = new SystemAlertMqParam(rabbitTemplate);
-        systemAlertMqParam.setUserId(0L);
-        systemAlertMqParam.sendMessage();
+//        checkAdminExists("root");
         // 测试redis
-        redisTemplate.opsForValue().set("1", "2");
+//        redisTemplate.opsForValue().set("1", "2");
     }
 
     private void checkAdminExists(String username) throws Exception {
-        UserLogin qo = new UserLogin();
-        qo.setUsername(username);
-        qo.setLoginType(2);
-        List<UserLogin> userLogins = userLoginExtMapper.queryAll(qo);
+        UserLoginRelation qo = new UserLoginRelation();
+        List<UserLoginRelation> userLogins = userLoginRelationMapper.selectList(
+            new LambdaQueryWrapper<UserLoginRelation>().eq(UserLoginRelation::getUsername, username)
+                .eq(UserLoginRelation::getLoginType, 2));
         if (!CollectionUtils.isEmpty(userLogins)) {
             return;
         }
@@ -76,15 +67,15 @@ public class UserApplication implements CommandLineRunner {
         // 创建管理员数据
         UserUser user = new UserUser();
         user.setNickname("init");
-        userUserExtMapper.insert(user);
+        userUserMapper.insert(user);
         // 创建登录数据
-        UserLogin userLogin = new UserLogin();
-        userLogin.setUserId(user.getId());
-        userLogin.setLoginType(2);
-        userLogin.setUsername(username);
-        userLogin.setPassword(pwd);
-        userLogin.setSalt(salt);
-        userLoginExtMapper.insert(userLogin);
+        UserLoginRelation userLoginRelation = new UserLoginRelation();
+        userLoginRelation.setUserId(user.getId());
+        userLoginRelation.setLoginType(2);
+        userLoginRelation.setUsername(username);
+        userLoginRelation.setPassword(pwd);
+        userLoginRelation.setSalt(salt);
+        userLoginRelationMapper.insert(userLoginRelation);
     }
 
 }

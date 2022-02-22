@@ -1,5 +1,6 @@
 package cn.ve.message.dal.entity;
 
+import cn.ve.base.pojo.BaseEntity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;

@@ -1,64 +1,106 @@
 package cn.ve.user.dal.entity;
 
-import java.util.Date;
-import java.io.Serializable;
-import java.math.BigDecimal;
-import java.util.Date;
-
+import cn.ve.base.pojo.BaseEntity;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
+import lombok.experimental.SuperBuilder;
+
+import java.util.Date;
 
 /**
  * 用户表(UserUser)实体类
  *
- * @author makejava
- * @since 2021-09-20 21:44:14
+ * @author ve
+ * @since 2022-02-22 14:15:20
  */
 @Data
-public class UserUser implements Serializable {
-    private static final long serialVersionUID = -71675184787820879L;
+@NoArgsConstructor
+@AllArgsConstructor
+@SuperBuilder
+@EqualsAndHashCode(callSuper = true)
+public class UserUser extends BaseEntity {
+    private static final long serialVersionUID = -32030853332822496L;
+
     /**
-     * 主键id
+     * 手机号码
      */
-    private Long id;
+    private String phone;
+
     /**
-     * 创建人id
+     * 头像
      */
-    private Long creatorId;
+    private String headPortrait;
+
     /**
-     * 修改人id
+     * 性别:0.男；1.女；2.未知；
      */
-    private Long updaterId;
+    private Integer gender;
+
     /**
-     * 创建人名称
+     * 现住地省编码
      */
-    private String creatorName;
+    private String provinceCode;
+
     /**
-     * 修改人名称
+     * 现住地市编码
      */
-    private String updaterName;
+    private String cityCode;
+
     /**
-     * 创建时间
+     * 现住地区编码
      */
-    private Date createTime;
+    private String areaCode;
+
     /**
-     * 修改时间
+     * 现住地省名称
      */
-    private Date updateTime;
+    private String provinceName;
+
     /**
-     * 是否被删除:0.未删除;1.已删除
+     * 现住地市名称
      */
-    private Integer deleted;
+    private String cityName;
+
     /**
-     * 版本号
+     * 现住地区名称
      */
-    private Integer versions;
+    private String areaName;
+
     /**
-     * 备注
+     * 现住地详细地址
      */
-    private String remark;
+    private String address;
+
+    /**
+     * 生日
+     */
+    private Date birthday;
+
+    /**
+     * 职业
+     */
+    private String occupation;
+
     /**
      * 昵称
      */
     private String nickname;
+
+    /**
+     * 民族
+     */
+    private String nation;
+
+    /**
+     * 家乡
+     */
+    private String hometown;
+
+    /**
+     * 年龄
+     */
+    private Integer age;
 
 }

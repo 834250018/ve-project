@@ -1,4 +1,4 @@
-package cn.ve.message.dal.entity;
+package cn.ve.base.pojo;
 
 import com.baomidou.mybatisplus.annotation.*;
 import io.swagger.annotations.ApiModelProperty;

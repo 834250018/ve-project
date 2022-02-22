@@ -6,13 +6,13 @@ import lombok.Data;
 import java.io.Serializable;
 
 /**
- * 用户表(UserUser)实体类
+ * 用户表(UserLoginRelation)实体类
  *
  * @author ve
- * @since 2022-02-22 14:15:28
+ * @since 2022-02-22 14:16:51
  */
 @Data
-public class UserUserUpdateStatusForm implements Serializable {
+public class UserLoginRelationUpdateStatusForm implements Serializable {
     @ApiModelProperty("主键id")
     private Long id;
 

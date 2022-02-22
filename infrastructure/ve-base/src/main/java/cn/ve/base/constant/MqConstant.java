@@ -38,4 +38,23 @@ public interface MqConstant {
      */
     String ALL2MESSAGE_MESSAGE_ROUTING_KEY = "all2message_message_routing_key";
 
+    /**
+     * mq消费失败消息队列
+     */
+    String ALL2COMMONS_ERR_MSG_EXCHANGE = "all2commons_err_msg_exchange";
+    String ALL2COMMONS_ERR_MSG_QUEUE = "all2commons_err_msg_queue";
+    String ALL2COMMONS_ERR_MSG_ROUTING_KEY = "all2commons_err_msg_routing_key";
+    /**
+     * mq停工自动复工延迟队列
+     */
+    String USER2USER_XXX_DELAY_EXCHANGE = "user2user_xxx_delay_exchange";
+    String USER2USER_XXX_DELAY_QUEUE = "user2user_xxx_delay_queue";
+    String USER2USER_XXX_DELAY_ROUTING_KEY = "user2user_xxx_delay_routing_key";
+
+    /**
+     * 用户个人信息变更广播
+     */
+    String USER2ALL_UPDATED_EXCHANGE = "user2all_updated_exchange";
+    String USER2ALL_UPDATED_FANOUT_QUEUE_USER = "user2all_updated_fanout_queue_user";
+    String USER2ALL_UPDATED_FANOUT_QUEUE_MARKETING = "user2all_updated_fanout_queue_marketing";
 }

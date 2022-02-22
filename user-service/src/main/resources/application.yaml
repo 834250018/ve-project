@@ -10,7 +10,7 @@ spring:
     username: postgres
     password: TpzS5zHVnPSF
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://:20102/saas-dev?useSSL=false&seUnicode=true&characterEncoding=UTF-8
+    url: jdbc:postgresql://0.0.0.0:20102/saas-dev?useSSL=false&seUnicode=true&characterEncoding=UTF-8
     platform: postgres
   servlet:
     multipart:

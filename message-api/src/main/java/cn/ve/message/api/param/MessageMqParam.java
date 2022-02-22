@@ -36,14 +36,6 @@ public class MessageMqParam extends BaseMqParam {
      * 接收的用户id
      */
     private Long userId;
-    /**
-     * 接受的用户类型
-     */
-    private int userType;
-    /**
-     * 项目id
-     */
-    private Long projectId;
 
     public MessageMqParam(AmqpTemplate amqpTemplate) {
         super(amqpTemplate);
