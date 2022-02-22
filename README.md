@@ -7,7 +7,7 @@
 * **gateway-service** 服务网关
 * **infrastructure** 基础设施
     * **ve-base** 公共依赖
-    * **ve-feign** 远程调用
+    * **ve-feign** 微服务调用
     * **ve-file** 文件内容
     * **ve-job** 任务调度
     * **ve-rabbitmq** 消息队列
