@@ -80,9 +80,10 @@ public class RabbitMQListener {
     public void smsRabbitListener(Message message) {
         SmsMqParam smsMqParam = (SmsMqParam)SerializationUtils.deserialize(message.getBody());
         log.info(JSON.toJSONString(smsMqParam));
-        if (rabbitMQConstant.getSmsSwitch() != null && !rabbitMQConstant.getSmsSwitch()) {
+        if (!rabbitMQConstant.getSmsSwitch()) {
             return;
         }
+        // todo 持久化到本地数据库
         // todo
         //        baseSMSEngine.sendMsg(smsMqParam.getSignName(), smsMqParam.getPhoneNumbers(), smsMqParam.getTemplateCode(),
         //            smsMqParam.getParamMap());
