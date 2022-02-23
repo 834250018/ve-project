@@ -80,9 +80,9 @@ public class UserUserDTO implements Serializable {
     @ApiModelProperty("头像")
     private String headPortrait;
     /**
-     * 性别:0.男；1.女；2.未知；
+     * 性别:0.男；1.女;
      */
-    @ApiModelProperty("性别:0.男；1.女；2.未知；")
+    @ApiModelProperty("性别:0.男；1.女;")
     private Integer gender;
     /**
      * 现住地省编码

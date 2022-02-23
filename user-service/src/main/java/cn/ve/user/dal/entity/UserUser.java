@@ -34,7 +34,7 @@ public class UserUser extends BaseEntity {
     private String headPortrait;
 
     /**
-     * 性别:0.男；1.女；2.未知；
+     * 性别:0.男；1.女;
      */
     private Integer gender;
 

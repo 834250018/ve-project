@@ -44,7 +44,7 @@ comment on column user_user.remark is '备注';
 
 comment on column user_user.phone is '手机号码';
 comment on column user_user.head_portrait is '头像';
-comment on column user_user.gender is '性别:0.男；1.女；2.未知；';
+comment on column user_user.gender is '性别:0.男；1.女;';
 comment on column user_user.province_code is '现住地省编码';
 comment on column user_user.city_code is '现住地市编码';
 comment on column user_user.area_code is '现住地区编码';

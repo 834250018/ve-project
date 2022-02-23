@@ -4,6 +4,7 @@ import cn.ve.base.util.BeanUtils;
 import cn.ve.message.dal.mapper.MessageMessageMapper;
 import cn.ve.message.dto.MessageMessageDTO;
 import cn.ve.message.param.MessageMessageQO;
+import cn.ve.rest.pojo.BaseController;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.github.pagehelper.PageInfo;
 import io.swagger.annotations.Api;

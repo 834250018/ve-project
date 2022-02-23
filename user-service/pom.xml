@@ -29,5 +29,17 @@
             <groupId>cn.ve</groupId>
             <artifactId>ve-redis</artifactId>
         </dependency>
+        <dependency>
+            <groupId>cn.ve</groupId>
+            <artifactId>message-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>cn.ve</groupId>
+            <artifactId>ve-rabbitmq</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>cn.ve</groupId>
+            <artifactId>thirdparty-api</artifactId>
+        </dependency>
     </dependencies>
 </project>

@@ -21,6 +21,11 @@
             <groupId>cn.ve</groupId>
             <artifactId>ve-base</artifactId>
         </dependency>
+        <!-- xxl-rpc-core -->
+        <dependency>
+            <groupId>com.xuxueli</groupId>
+            <artifactId>xxl-job-core</artifactId>
+        </dependency>
     </dependencies>
 
 </project>
