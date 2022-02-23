@@ -1,6 +1,7 @@
 package cn.ve.user;
 
 import cn.hutool.core.codec.Base64Encoder;
+import cn.ve.base.util.IdUtil;
 import cn.ve.base.util.PasswordUtils;
 import cn.ve.user.dal.entity.UserLoginRelation;
 import cn.ve.user.dal.entity.UserUser;
@@ -58,7 +59,7 @@ public class UserApplication implements CommandLineRunner {
         byte[] digest = MessageDigest.getInstance("SHA-256").digest(bytes);
         String encryptedPwd = Base64Encoder.encode(digest);
         // 后端摘要
-        String salt = UUID.randomUUID().toString().replaceAll("-", "");
+        String salt = IdUtil.genUUID();
         System.out.println("salt" + salt);
         System.out.println("encryptedPwd" + encryptedPwd);
         String pwd = PasswordUtils.genPwdCiphertext(encryptedPwd, salt);

@@ -32,7 +32,7 @@ public class RabbitMQListener {
     MessageMessageMapper messageMessageMapper;
     @Resource
     MessageMessageTemplateMapper messageMessageTemplateMapper;
-    //    @Autowired
+    //    @Resource
     //    BaseSMSEngine baseSMSEngine;
     @Resource
     private RabbitMQConstant rabbitMQConstant;

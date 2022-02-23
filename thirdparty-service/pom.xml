@@ -23,6 +23,14 @@
             <groupId>cn.ve</groupId>
             <artifactId>thirdparty-api</artifactId>
         </dependency>
+        <dependency>
+            <groupId>cn.ve</groupId>
+            <artifactId>ve-redis</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.github.javen205</groupId>
+            <artifactId>IJPay-WxPay</artifactId>
+        </dependency>
     </dependencies>
 
 </project>

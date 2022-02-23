@@ -9,6 +9,10 @@ import java.io.Serializable;
 public class VeException extends RuntimeException implements Serializable {
     private static final long serialVersionUID = 1L;
 
+    public VeException(Throwable cause) {
+        super(cause);
+    }
+
     public VeException(VeErrorCode VEErrorCode) {
         super(VEErrorCode.getStatus() + "#" + VEErrorCode.getMsg());
     }

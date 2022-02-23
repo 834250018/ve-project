@@ -381,6 +381,12 @@
                 <artifactId>spring-boot-starter-test</artifactId>
                 <version>2.1.6.RELEASE</version>
             </dependency>
+
+            <dependency>
+                <groupId>com.github.javen205</groupId>
+                <artifactId>IJPay-WxPay</artifactId>
+                <version>2.7.9</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 

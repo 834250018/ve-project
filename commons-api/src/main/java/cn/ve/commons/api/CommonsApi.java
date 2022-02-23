@@ -1,7 +1,7 @@
 package cn.ve.commons.api;
 
-import cn.ve.feign.pojo.CommonResult;
 import cn.ve.commons.pojo.FileParam;
+import cn.ve.feign.pojo.CommonResult;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -13,26 +13,20 @@ public interface CommonsApi {
 
     String PUBLIC_ACCESS_FILE = "public_access_file";
 
+    /**
+     * 获取文件
+     *
+     * @param uri 文件路径
+     * @return 文件bese64
+     */
     @PostMapping(value = "/feign/commons/1.1.3/getPrivate")
-    CommonResult<FileParam> getPrivate(@RequestParam("uri") String uri);
+    CommonResult<String> getPrivate(@RequestParam("uri") String uri);
 
     /**
      * 上传私有文件并打上公共标签
      *
-     * @param param
-     * @return
-     */
-    @PostMapping(value = "/feign/commons/1.1.3/uploadPrivateAndTagPublic")
-    CommonResult<String> uploadPrivateAndTagPublic(@RequestBody FileParam param);
-
-    @PostMapping(value = "/feign/commons/1.1.3/putPrivateAndTagPublic")
-    CommonResult<String> putPrivateAndTagPublic(@RequestBody FileParam param);
-
-    /**
-     * 上传私有文件
-     *
-     * @param param
-     * @return
+     * @param param 文件内容
+     * @return 文件路径
      */
     @PostMapping(value = "/feign/commons/1.1.3/uploadPrivate")
     CommonResult<String> uploadPrivate(@RequestBody FileParam param);
