@@ -50,21 +50,24 @@ public class FileUploadController {
     @PostMapping("/admin/v1/upload/temp")
     public String uploadTempFile(MultipartFile multipartFile,
         @RequestParam(value = "watermarkSkip", required = false) Boolean watermarkSkip) {
-        return minioBiz.uploadTempFile(multipartFile, watermarkSkip);
+//        return minioBiz.uploadTempFile(multipartFile, watermarkSkip);
+        return null;
     }
 
     @ApiOperation(value = "上传文件到公共bucket")
     @PostMapping("/admin/v1/upload/public")
     public String uploadPublicFile(MultipartFile multipartFile,
         @RequestParam(value = "watermarkSkip", required = false) Boolean watermarkSkip) {
-        return minioBiz.uploadPublicFile(multipartFile, watermarkSkip);
+//        return minioBiz.uploadPublicFile(multipartFile, watermarkSkip);
+        return null;
     }
 
     @ApiOperation(value = "上传文件到私有bucket,后续走服务验证完权限后获取文件")
     @PostMapping("/admin/v1/upload/private")
     public String uploadPrivateFile(MultipartFile multipartFile,
         @RequestParam(value = "watermarkSkip", required = false) Boolean watermarkSkip) {
-        return minioBiz.uploadPrivateFile(multipartFile, watermarkSkip);
+//        return minioBiz.uploadPrivateFile(multipartFile, watermarkSkip);
+        return null;
     }
 
     @ApiOperation(value = "通过文件uri获取私有文件,uri为文件目录+文件名+后缀,以二进制的形式返回文件")

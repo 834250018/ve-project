@@ -15,7 +15,7 @@ import java.net.URL;
  * @author ve
  * @date 2021/7/28
  */
-public class ImgUtils {
+public class ImgUtil {
 
     /**
      * 图片压缩

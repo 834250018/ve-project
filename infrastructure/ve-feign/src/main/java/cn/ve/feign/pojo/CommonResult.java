@@ -19,11 +19,11 @@ public class CommonResult<R> implements Serializable {
         return result;
     }
 
-    public static CommonResult<?> success(int code, String msg) {
-        CommonResult<?> result = new CommonResult<>();
-        result.setCode(code);
-        result.setMsg(msg);
-        return result;
+    public static <R> CommonResult<R> fail(int code, String msg) {
+        CommonResult<R> commonResult = new CommonResult<>();
+        commonResult.setCode(code);
+        commonResult.setMsg(msg);
+        return commonResult;
     }
 
 }
