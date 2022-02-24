@@ -27,6 +27,12 @@
             <groupId>cn.ve</groupId>
             <artifactId>ve-rest</artifactId>
         </dependency>
+
+        <dependency>
+            <groupId>io.netty</groupId>
+            <artifactId>netty-all</artifactId> <!-- Use 'netty-all' for 4.0 or above -->
+        </dependency>
+
     </dependencies>
 
 </project>

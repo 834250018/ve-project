@@ -18,13 +18,13 @@
         <module>user-api</module>
         <module>user-service</module>
         <module>infrastructure</module>
-<!--        <module>infrastructure/ve-base</module>-->
-<!--        <module>infrastructure/ve-feign</module>-->
-<!--        <module>infrastructure/ve-file</module>-->
-<!--        <module>infrastructure/ve-job</module>-->
-<!--        <module>infrastructure/ve-rabbitmq</module>-->
-<!--        <module>infrastructure/ve-redis</module>-->
-<!--        <module>infrastructure/ve-rest</module>-->
+        <!--        <module>infrastructure/ve-base</module>-->
+        <!--        <module>infrastructure/ve-feign</module>-->
+        <!--        <module>infrastructure/ve-file</module>-->
+        <!--        <module>infrastructure/ve-job</module>-->
+        <!--        <module>infrastructure/ve-rabbitmq</module>-->
+        <!--        <module>infrastructure/ve-redis</module>-->
+        <!--        <module>infrastructure/ve-rest</module>-->
         <module>gateway-service</module>
 
     </modules>
@@ -399,6 +399,13 @@
                 <artifactId>log4j-core</artifactId>
                 <version>2.17.1</version>
             </dependency>
+
+            <dependency>
+                <groupId>io.netty</groupId>
+                <artifactId>netty-all</artifactId> <!-- Use 'netty-all' for 4.0 or above -->
+                <version>5.0.0.Alpha2</version>
+            </dependency>
+
         </dependencies>
     </dependencyManagement>
 
