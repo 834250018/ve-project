@@ -9,14 +9,14 @@ import org.springframework.context.annotation.Configuration;
  * @author ve
  * @date 2021/7/28
  */
-@Configuration
+//@Configuration
 public class MinioConfig {
 
     @Bean
     public MinioUtil minioEngine(@Value("${minio.local-url}") String insideNetwork,
-        @Value("${minio.url}") String externalAddress, @Value("${file.default-bucket-name}") String defaultBucketName,
-        @Value("${minio.access-key}") String accessKey, @Value("${minio.secret-key}") String secretKey) {
-        return new MinioUtil(insideNetwork, externalAddress, defaultBucketName, accessKey, secretKey);
+        @Value("${minio.url}") String externalAddress, @Value("${minio.access-key}") String accessKey,
+        @Value("${minio.secret-key}") String secretKey) {
+        return new MinioUtil(insideNetwork, externalAddress, accessKey, secretKey);
     }
 
 }

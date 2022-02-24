@@ -37,3 +37,27 @@ spring:
 mybatis:
   mapper-locations: classpath:mapper/**/*.xml
   type-aliases-package: cn.ve.thirdgateway.dal.entity
+baidu:
+  ak: 1
+  sk: 1
+ali:
+  sms:
+    access-key-id: 1
+    access-key-secret: 1
+  app-key: 1
+  app-secret: 1
+wechat:
+  url:
+    jscode2session: https://api.weixin.qq.com/sns/jscode2session?appid={0}&secret={1}&js_code={2}&grant_type=authorization_code
+    access_token: https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid={0}&secret={1}
+  miniprogram:
+    appid: 1
+    secret: 1
+  official-account:
+    appid: 1
+    secret: 1
+    message:
+      template-id: 1
+  callback:
+    token: 1
+    encoding-AES-Key: 1

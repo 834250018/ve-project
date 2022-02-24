@@ -44,4 +44,6 @@ minio:
   #外网访问地址
   url: https://devminio.bnhl8.com
   access-key: minio
-  secret-key:
+  secret-key: minio
+file:
+  cleanup-expired-days: 30

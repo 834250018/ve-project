@@ -30,7 +30,7 @@ import java.util.concurrent.TimeUnit;
 @Service
 public class MinioManager {
 
-    @Resource
+//    @Resource
     private MinioUtil minioUtil;
     @Value("${file.cleanup-expired-days}")
     private Integer cleanupExpiredDays;

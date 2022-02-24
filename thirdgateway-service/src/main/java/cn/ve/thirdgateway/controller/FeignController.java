@@ -33,9 +33,9 @@ public class FeignController implements ThirdgatewayApi {
     private String aliAppKey;
     @Value("${ali.app-secret}")
     private String aliAppSecret;
-    @Value("${wechat.appid.miniprogram}")
+    @Value("${wechat.miniprogram.appid}")
     private String wechatMiniprogramAppid;
-    @Value("${wechat.secret.miniprogram}")
+    @Value("${wechat.miniprogram.secret}")
     private String wechatMiniprogramSecret;
     @Value("${wechat.url.jscode2session}")
     private String jscode2sessionUrl;

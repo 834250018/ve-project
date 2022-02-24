@@ -40,13 +40,13 @@ import java.util.stream.Stream;
 public class WechatServiceImpl implements WechatService {
     @Resource
     private WxUnionidRelationMapper wxUnionidRelationMapper;
-    @Value("${wechat.appid.official-account}")
+    @Value("${wechat.official-account.appid}")
     private String officialAccountAppid;
-    @Value("${wechat.secret.official-account}")
+    @Value("${wechat.official-account.secret}")
     private String officialAccountSecret;
-    @Value("${wechat.message.template-id}")
+    @Value("${wechat.official-account.message.template-id}")
     private String templateId;
-    @Value("${wechat.access_token.url}")
+    @Value("${wechat.url.access_token}")
     private String accessTokenUrl;
     @Value("${wechat.callback.token}")
     private String wechatOfficialAccountCallbackToken;

@@ -41,12 +41,10 @@ public class MinioUtil {
     /**
      * @param insideNetwork     内网地址
      * @param externalAddress   外网地址
-     * @param defaultBucketName 默认bucketName
      * @param accessKey
      * @param secretKey
      */
-    public MinioUtil(String insideNetwork, String externalAddress, String defaultBucketName, String accessKey,
-        String secretKey) {
+    public MinioUtil(String insideNetwork, String externalAddress, String accessKey, String secretKey) {
         this.externalAddress = externalAddress;
         this.minioClient = MinioClient.builder().endpoint(insideNetwork).credentials(accessKey, secretKey).build();
         this.extMinioClient =
