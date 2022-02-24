@@ -6,8 +6,8 @@ import cn.ve.base.util.BeanUtils;
 import cn.ve.base.util.PasswordUtils;
 import cn.ve.base.util.StringConstant;
 import cn.ve.feign.pojo.CommonResult;
-import cn.ve.thirdparty.api.ThirdpartyApi;
-import cn.ve.thirdparty.pojo.WechatOpenidDTO;
+import cn.ve.thirdgateway.api.ThirdgatewayApi;
+import cn.ve.thirdgateway.pojo.WechatOpenidDTO;
 import cn.ve.user.constant.RedisPrefixTypeConstant;
 import cn.ve.user.dal.entity.UserLoginRelation;
 import cn.ve.user.dal.entity.UserUser;
@@ -42,7 +42,7 @@ public class LoginServiceImpl implements LoginService {
     @Resource
     private RedisTemplate<String, String> redisTemplate;
     @Resource
-    private ThirdpartyApi thirdpartyApi;
+    private ThirdgatewayApi thirdgatewayApi;
     @Resource
     private UserLoginRelationMapper userLoginRelationMapper;
     @Resource
@@ -155,7 +155,7 @@ public class LoginServiceImpl implements LoginService {
 
     @Override
     public WechatOpenidDTO getOpenidByJscode(String jscode) {
-        CommonResult<WechatOpenidDTO> openidByJscode = thirdpartyApi.getOpenidByJscode(jscode);
+        CommonResult<WechatOpenidDTO> openidByJscode = thirdgatewayApi.getOpenidByJscode(jscode);
         if (openidByJscode.getCode() != 200) {
             log.error("请求第三方网关异常_{}", openidByJscode.getMsg());
             throw new VeException("服务器异常");
@@ -168,7 +168,7 @@ public class LoginServiceImpl implements LoginService {
     public String bindPhoneWithWechat(String uuid, String encryptedData, String iv, String inviterCode) {
         String json = redisTemplate.opsForValue().get(RedisPrefixTypeConstant.USER_WECHAT_BIND_PHONE + uuid);
         WechatOepnidWithNameDTO openidByJscode = JSON.parseObject(json, WechatOepnidWithNameDTO.class);
-        String phone = thirdpartyApi.getPhoneByEncryptedData(encryptedData, openidByJscode.getSession_key(), iv);
+        String phone = thirdgatewayApi.getPhoneByEncryptedData(encryptedData, openidByJscode.getSession_key(), iv);
         // 通过手机号查询登录方式,如果有,新增微信登录,如果没有新增账号,再新增手机号登录跟微信登录
         UserLoginRelation userLoginRelation = userLoginRelationMapper.selectOne(
             new LambdaQueryWrapper<UserLoginRelation>()

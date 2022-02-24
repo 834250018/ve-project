@@ -46,6 +46,6 @@ public interface CommonsApi {
      * @param uri
      * @return
      */
-    @GetMapping("/admin/v1.1.3/getPreSignFile")
+    @GetMapping("/admin/v1.0/getPreSignFile")
     CommonResult<String> getPreSignFile(@RequestParam(value = "uri", required = false) String uri);
 }

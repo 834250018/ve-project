@@ -32,8 +32,8 @@ public class RabbitMQListener {
     MessageMessageMapper messageMessageMapper;
     @Resource
     MessageMessageTemplateMapper messageMessageTemplateMapper;
-    //    @Resource
-    //    BaseSMSEngine baseSMSEngine;
+//        @Resource
+//        BaseSMSEngine baseSMSEngine;
     @Resource
     private RabbitMQConstant rabbitMQConstant;
 
@@ -83,9 +83,7 @@ public class RabbitMQListener {
         if (!rabbitMQConstant.getSmsSwitch()) {
             return;
         }
+        // todo 发短信
         // todo 持久化到本地数据库
-        // todo
-        //        baseSMSEngine.sendMsg(smsMqParam.getSignName(), smsMqParam.getPhoneNumbers(), smsMqParam.getTemplateCode(),
-        //            smsMqParam.getParamMap());
     }
 }

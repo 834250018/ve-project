@@ -4,14 +4,14 @@ import cn.ve.base.pojo.VeException;
 import cn.ve.commons.manager.MinioManager;
 import cn.ve.commons.pojo.BankCardOCRDTO;
 import cn.ve.commons.pojo.IdCardOCRDTO;
-import cn.ve.commons.util.FileUtil;
-import cn.ve.commons.util.ImgUtil;
+import cn.ve.rest.util.FileUtil;
+import cn.ve.base.util.ImgUtil;
 import cn.ve.commons.util.OCRUtils;
 import cn.ve.feign.pojo.CommonResult;
-import cn.ve.thirdparty.api.ThirdpartyApi;
-import cn.ve.thirdparty.pojo.AliOCRParam;
-import cn.ve.thirdparty.pojo.BankCardOcrResp;
-import cn.ve.thirdparty.pojo.IdCardOcrResp;
+import cn.ve.thirdgateway.api.ThirdgatewayApi;
+import cn.ve.thirdgateway.pojo.AliOCRParam;
+import cn.ve.thirdgateway.pojo.BankCardOcrResp;
+import cn.ve.thirdgateway.pojo.IdCardOcrResp;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
@@ -42,7 +42,7 @@ public class OcrController {
     private MinioManager minioManager;
 
     @Resource
-    private ThirdpartyApi thirdpartyApi;
+    private ThirdgatewayApi thirdgatewayApi;
 
     @ApiOperation(value = "(开源)身份证OCR并上传")
     @PostMapping("/admin/v1/idCardByOS")
@@ -91,7 +91,7 @@ public class OcrController {
         aliOCRParam.setSide(side);
         CommonResult<IdCardOcrResp> idCardOcrResp;
         try {
-            idCardOcrResp = thirdpartyApi.idCardOcr(aliOCRParam);
+            idCardOcrResp = thirdgatewayApi.idCardOcr(aliOCRParam);
         } catch (VeException e) {
             log.error("阿里ocr识别异常: {}", e.getMessage(), e);
             throw e;
@@ -119,7 +119,7 @@ public class OcrController {
         aliOCRParam.setImageBase64(ImgUtil.imgBase64(tempFile.getAbsolutePath()));
         CommonResult<BankCardOcrResp> bankCardOcrResp;
         try {
-            bankCardOcrResp = thirdpartyApi.bankCardOcr(aliOCRParam);
+            bankCardOcrResp = thirdgatewayApi.bankCardOcr(aliOCRParam);
         } catch (Exception e) {
             log.error("阿里ocr识别异常: {}", e.getMessage(), e);
             throw new VeException("异常");

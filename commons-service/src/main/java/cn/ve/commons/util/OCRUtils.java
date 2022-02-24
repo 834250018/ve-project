@@ -1,5 +1,6 @@
 package cn.ve.commons.util;
 
+import cn.ve.base.util.ImgUtil;
 import cn.ve.commons.pojo.IdCardOCRDTO;
 import net.sourceforge.tess4j.ITesseract;
 import net.sourceforge.tess4j.Tesseract;

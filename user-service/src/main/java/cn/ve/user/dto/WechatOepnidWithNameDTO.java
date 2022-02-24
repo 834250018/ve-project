@@ -1,6 +1,6 @@
 package cn.ve.user.dto;
 
-import cn.ve.thirdparty.pojo.WechatOpenidDTO;
+import cn.ve.thirdgateway.pojo.WechatOpenidDTO;
 import lombok.Data;
 import lombok.experimental.FieldNameConstants;
 

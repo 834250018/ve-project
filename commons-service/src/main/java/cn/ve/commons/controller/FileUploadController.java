@@ -82,7 +82,7 @@ public class FileUploadController {
 
     //    @AuthIgnore
     @ApiOperation(value = "通过文件uri获取含公共访问标签的私有文件,走下载操作")
-    @GetMapping("/admin/v1.1.3/getFileWithTag/{date}/{fileName}")
+    @GetMapping("/admin/v1.0/getFileWithTag/{date}/{fileName}")
     public void getFileWithTag(@PathVariable String fileName, @PathVariable String date, HttpServletResponse response) {
         String uri = date + "/" + fileName;
         Map<String, String> fileTags;
@@ -98,7 +98,7 @@ public class FileUploadController {
     }
 
     @ApiOperation(value = "通过文件uri获取私有文件,走下载操作")
-    @GetMapping("/admin/v1.1.3/getPrivateFile/{date}/{fileName}")
+    @GetMapping("/admin/v1.0/getPrivateFile/{date}/{fileName}")
     public void getPrivateFile(@PathVariable String fileName, @PathVariable String date, HttpServletResponse response) {
         String uri = date + "/" + fileName;
         Map<String, String> fileTags;

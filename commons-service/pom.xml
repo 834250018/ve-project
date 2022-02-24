@@ -28,10 +28,6 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-freemarker</artifactId>
         </dependency>
-        <dependency>
-            <groupId>net.coobird</groupId>
-            <artifactId>thumbnailator</artifactId>
-        </dependency>
 
         <!--=========== POI ===========-->
         <dependency>
@@ -65,7 +61,7 @@
         </dependency>
         <dependency>
             <groupId>cn.ve</groupId>
-            <artifactId>thirdparty-api</artifactId>
+            <artifactId>thirdgateway-api</artifactId>
         </dependency>
 
     </dependencies>

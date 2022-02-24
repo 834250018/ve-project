@@ -5,7 +5,7 @@ import cn.hutool.core.date.DateTime;
 import cn.ve.base.pojo.FileType;
 import cn.ve.base.pojo.VeException;
 import cn.ve.commons.util.FilePathHelper;
-import cn.ve.commons.util.FileUtil;
+import cn.ve.rest.util.FileUtil;
 import cn.ve.file.util.MinioUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.IOUtils;

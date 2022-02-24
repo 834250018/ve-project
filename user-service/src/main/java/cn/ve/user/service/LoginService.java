@@ -1,6 +1,6 @@
 package cn.ve.user.service;
 
-import cn.ve.thirdparty.pojo.WechatOpenidDTO;
+import cn.ve.thirdgateway.pojo.WechatOpenidDTO;
 import cn.ve.user.dto.LoginByWechatDTO;
 
 /**

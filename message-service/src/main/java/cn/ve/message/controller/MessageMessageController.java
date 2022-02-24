@@ -55,7 +55,7 @@ public class MessageMessageController extends BaseController {
     }
 
     @ApiOperation(value = "我已知晓消息(对某个模板下的消息进行已读)")
-    @PostMapping("/v1.1.3/confirmByQO")
+    @PostMapping("/v1.0/confirmByQO")
     public void confirmByQO(@ModelAttribute @Valid MessageMessageQO qo) {
         qo.setUserId(getUserId());
         // todo
