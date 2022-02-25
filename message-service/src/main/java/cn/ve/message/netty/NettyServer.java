@@ -8,7 +8,6 @@ import io.netty.channel.EventLoopGroup;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
-import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
 
@@ -31,10 +30,9 @@ public class NettyServer {
         ServerBootstrap b = new ServerBootstrap();
         b.group(bossGroup, workerGroup).channel(NioServerSocketChannel.class)
             .childHandler(new ChannelInitializer<SocketChannel>() {
-
                 @Override
                 protected void initChannel(SocketChannel socketChannel) throws Exception {
-                    socketChannel.pipeline().addLast(new DiscardServerHandler());
+                    socketChannel.pipeline().addLast(new DiscardServerHandler4());
                 }
             }).option(ChannelOption.SO_BACKLOG, 128).childOption(ChannelOption.SO_KEEPALIVE, true);
         System.out.println("启动加载netty2");
