@@ -25,6 +25,7 @@ public interface WechatService {
 
     /**
      * 微信公众号关注回调
+     *
      * @param uriParam
      * @param xmlMsg
      * @return

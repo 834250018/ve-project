@@ -13,7 +13,8 @@ public class FreemarkerConfig {
 
     @Bean
     public freemarker.template.Configuration freemarkerConfiguration() {
-        freemarker.template.Configuration cfg = new freemarker.template.Configuration(freemarker.template.Configuration.VERSION_2_3_27);
+        freemarker.template.Configuration cfg =
+            new freemarker.template.Configuration(freemarker.template.Configuration.VERSION_2_3_27);
         cfg.setDefaultEncoding("UTF-8");
         // 把异常抛给系统
         cfg.setTemplateExceptionHandler(TemplateExceptionHandler.RETHROW_HANDLER);

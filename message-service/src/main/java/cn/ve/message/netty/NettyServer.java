@@ -18,9 +18,9 @@ import javax.annotation.PostConstruct;
 //@Component
 public class NettyServer {
 
-//    public static void main(String[] args) throws Exception {
-//        new NettyServer().start();
-//    }
+    //    public static void main(String[] args) throws Exception {
+    //        new NettyServer().start();
+    //    }
 
     @PostConstruct
     public void start() throws Exception {

@@ -13,28 +13,28 @@
 * **gateway-service** 服务网关
 * **commons-api** 第二方组件api
 * **commons-service** 第二方组件接入
-  * minio文件上传
-  * tess4j身份证ocr
-  * tess4j银行卡ocr
+    * minio文件上传
+    * tess4j身份证ocr
+    * tess4j银行卡ocr
 * **message-api** 消息服务api
 * **message-service** 消息服务
-  * 消息通知业务
-  * 阿里云短信
+    * 消息通知业务
+    * 阿里云短信
 * **thirdgateway-api** 第三方服务接入api
 * **thirdgateway-service** 第三方服务接入
-  * 微信获取openid
-  * 微信获取手机号
-  * 微信公众号消息
-  * 百度人脸比对
-  * 阿里银联3要素
-  * 阿里云身份证ocr
-  * 阿里云银行卡ocr
+    * 微信获取openid
+    * 微信获取手机号
+    * 微信公众号消息
+    * 百度人脸比对
+    * 阿里银联3要素
+    * 阿里云身份证ocr
+    * 阿里云银行卡ocr
 * **user-api** 用户服务api
 * **user-service** 用户服务
-  * 微信登录
-  * 手机号登录
-  * 账号密码登录
-  * 用户_登录表设计
+    * 微信登录
+    * 手机号登录
+    * 账号密码登录
+    * 用户_登录表设计
 
 #### TODO:
 

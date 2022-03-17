@@ -1,8 +1,6 @@
 package cn.ve.commons.controller;
 
 import cn.ve.commons.util.PoiUtil;
-//import cn.ve.user.api.UserApi;
-import io.swagger.annotations.Api;
 import lombok.extern.slf4j.Slf4j;
 import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.validation.annotation.Validated;
@@ -19,12 +17,13 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 /**
+ * 表格控制器
+ *
  * @author ve
  * @date 2018/10/15 17:00
  */
 @Slf4j
 @RestController
-@Api(value = "poi-controller", tags = "表格")
 @Validated
 public class PoiController {
 

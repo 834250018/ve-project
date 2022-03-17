@@ -7,8 +7,6 @@ import cn.ve.user.dto.LoginByWechatDTO;
 import cn.ve.user.dto.UserLoginRelationDTO;
 import cn.ve.user.service.LoginService;
 import com.alibaba.fastjson.JSON;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.validation.annotation.Validated;
@@ -24,10 +22,11 @@ import javax.validation.constraints.Pattern;
 import java.util.concurrent.TimeUnit;
 
 /**
+ * 公开控制器
+ *
  * @author ve
  * @date 2021/8/2
  */
-@Api(value = "公开控制器", description = "公开控制器")
 @RequestMapping("/public")
 @RestController
 @Validated
@@ -39,14 +38,27 @@ public class PublicController extends BaseController {
     @Resource
     LoginService loginService;
 
-    @ApiOperation(value = "手机号码登录-发送登录验证码")
+    /**
+     * 手机号码登录-发送登录验证码
+     *
+     * @param phone
+     * @return
+     */
     @PostMapping("/v1.0/sendLoginCodeMsg")
     public String sendLoginCodeMsg(@RequestParam @NotBlank @Pattern(regexp = "^\\d{11}$") String phone) {
         loginService.sendLoginCodeMsg(phone);
         return "ok";
     }
 
-    @ApiOperation(value = "手机号码登录")
+    /**
+     * 手机号码登录
+     *
+     * @param phone
+     * @param code
+     * @param inviterCode
+     * @param response
+     * @return
+     */
     @PostMapping("/v1.0/loginByPhone")
     public String loginByPhone(
         @RequestParam @NotBlank @Pattern(regexp = "^\\d{11}$", message = "请输入正确的手机号") String phone,
@@ -57,7 +69,15 @@ public class PublicController extends BaseController {
         return "ok";
     }
 
-    @ApiOperation(value = "微信登录并注册")
+    /**
+     * 微信登录并注册
+     *
+     * @param jscode
+     * @param headPortrait
+     * @param realName
+     * @param response
+     * @return
+     */
     @PostMapping("/v1.0/loginByWechat")
     public LoginByWechatDTO loginByWechat(@RequestParam @NotBlank String jscode,
         @RequestParam @NotBlank String headPortrait, @NotBlank @RequestParam String realName,
@@ -69,7 +89,13 @@ public class PublicController extends BaseController {
         return loginByWechatDTO;
     }
 
-    @ApiOperation(value = "微信仅登录(静默授权)")
+    /**
+     * 微信仅登录(静默授权)
+     *
+     * @param jscode
+     * @param response
+     * @return
+     */
     @PostMapping("/v1.0/loginOnlyByWechat")
     public String loginOnlyByWechat(@RequestParam @NotBlank String jscode, HttpServletResponse response) {
         String loginToken = loginService.loginOnlyByWechat(jscode);
@@ -77,7 +103,16 @@ public class PublicController extends BaseController {
         return "ok";
     }
 
-    @ApiOperation(value = "微信登录2-关联手机号")
+    /**
+     * 微信登录2-关联手机号
+     *
+     * @param token
+     * @param encryptedData
+     * @param iv
+     * @param inviterCode
+     * @param response
+     * @return
+     */
     @PostMapping("/v1.0/bindPhoneWithWechat")
     public String bindPhoneWithWechat(@RequestParam @NotBlank String token,
         @RequestParam @NotBlank String encryptedData, @RequestParam @NotBlank String iv,
@@ -87,7 +122,14 @@ public class PublicController extends BaseController {
         return "ok";
     }
 
-    @ApiOperation(value = "密码登录,明文string->明文byte[]->sha256->base64")
+    /**
+     * 密码登录,明文string->明文byte[]->sha256->base64
+     *
+     * @param username
+     * @param password
+     * @param response
+     * @return
+     */
     @PostMapping("/v1.0/loginByPassword")
     public String loginByPassword(@RequestParam @NotBlank String username, @RequestParam @NotBlank String password,
         HttpServletResponse response) {

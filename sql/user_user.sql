@@ -24,7 +24,7 @@ create table user_user
     address       varchar,
     birthday      date,
     occupation    varchar,
-    nickname   varchar,
+    nickname      varchar,
     nation        varchar   default '汉族'::character varying,
     hometown      varchar,
     age           integer

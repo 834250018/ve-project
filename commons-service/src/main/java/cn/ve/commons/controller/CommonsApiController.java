@@ -5,9 +5,9 @@ import cn.ve.base.util.IdUtil;
 import cn.ve.commons.api.CommonsApi;
 import cn.ve.commons.manager.MinioManager;
 import cn.ve.commons.pojo.FileParam;
-import cn.ve.rest.util.FileUtil;
 import cn.ve.feign.pojo.CommonResult;
 import cn.ve.file.util.MinioUtil;
+import cn.ve.rest.util.FileUtil;
 import com.baomidou.mybatisplus.core.toolkit.CollectionUtils;
 import org.springframework.web.bind.annotation.RestController;
 

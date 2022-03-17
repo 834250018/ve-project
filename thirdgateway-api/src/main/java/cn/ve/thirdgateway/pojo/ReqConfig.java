@@ -10,7 +10,7 @@ import java.io.Serializable;
  */
 
 @Data
-public   class ReqConfig implements Serializable {
+public class ReqConfig implements Serializable {
     /**
      * 银行卡
      */

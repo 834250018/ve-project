@@ -26,6 +26,14 @@ public class MinioUtil {
     public static final String PUBLIC_BUCKET = "public";
     // 私有bucket,不公开权限
     public static final String PRIVATE_BUCKET = "private";
+    public static final String CATALOG_DATE_FORMATTER = "yyyyMMdd";
+    public static final String TEMP_PATH = "temp/";
+    private static final String READ_ONLY =
+        "{\"Version\":\"2012-10-17\",\"Statement\":[{\"Effect\":\"Allow\",\"Principal\":{\"AWS\":[\"*\"]},\"Action\":[\"s3:ListBucket\",\"s3:GetBucketLocation\"],\"Resource\":[\"arn:aws:s3:::#bucketName#\"]},{\"Effect\":\"Allow\",\"Principal\":{\"AWS\":[\"*\"]},\"Action\":[\"s3:GetObject\"],\"Resource\":[\"arn:aws:s3:::#bucketName#/*\"]}]}";
+    private static final String WRITE_ONLY =
+        "{\"Version\":\"2012-10-17\",\"Statement\":[{\"Effect\":\"Allow\",\"Principal\":{\"AWS\":[\"*\"]},\"Action\":[\"s3:ListBucketMultipartUploads\",\"s3:GetBucketLocation\"],\"Resource\":[\"arn:aws:s3:::#bucketName#\"]},{\"Effect\":\"Allow\",\"Principal\":{\"AWS\":[\"*\"]},\"Action\":[\"s3:PutObject\",\"s3:AbortMultipartUpload\",\"s3:DeleteObject\",\"s3:ListMultipartUploadParts\"],\"Resource\":[\"arn:aws:s3:::#bucketName#/*\"]}]}";
+    private static final String READ_WRITE =
+        "{\"Version\":\"2012-10-17\",\"Statement\":[{\"Effect\":\"Allow\",\"Principal\":{\"AWS\":[\"*\"]},\"Action\":[\"s3:ListBucketMultipartUploads\",\"s3:GetBucketLocation\",\"s3:ListBucket\"],\"Resource\":[\"arn:aws:s3:::#bucketName#\"]},{\"Effect\":\"Allow\",\"Principal\":{\"AWS\":[\"*\"]},\"Action\":[\"s3:AbortMultipartUpload\",\"s3:DeleteObject\",\"s3:GetObject\",\"s3:ListMultipartUploadParts\",\"s3:PutObject\"],\"Resource\":[\"arn:aws:s3:::#bucketName#/*\"]}]}";
     /**
      * 常规操作
      */
@@ -35,12 +43,10 @@ public class MinioUtil {
      */
     private final MinioClient extMinioClient;
     private final String externalAddress;
-    public static final String CATALOG_DATE_FORMATTER = "yyyyMMdd";
-    public static final String TEMP_PATH = "temp/";
 
     /**
-     * @param insideNetwork     内网地址
-     * @param externalAddress   外网地址
+     * @param insideNetwork   内网地址
+     * @param externalAddress 外网地址
      * @param accessKey
      * @param secretKey
      */
@@ -85,15 +91,6 @@ public class MinioUtil {
             throw new VeException("minio服务异常");
         }
     }
-
-    private static final String READ_ONLY =
-        "{\"Version\":\"2012-10-17\",\"Statement\":[{\"Effect\":\"Allow\",\"Principal\":{\"AWS\":[\"*\"]},\"Action\":[\"s3:ListBucket\",\"s3:GetBucketLocation\"],\"Resource\":[\"arn:aws:s3:::#bucketName#\"]},{\"Effect\":\"Allow\",\"Principal\":{\"AWS\":[\"*\"]},\"Action\":[\"s3:GetObject\"],\"Resource\":[\"arn:aws:s3:::#bucketName#/*\"]}]}";
-
-    private static final String WRITE_ONLY =
-        "{\"Version\":\"2012-10-17\",\"Statement\":[{\"Effect\":\"Allow\",\"Principal\":{\"AWS\":[\"*\"]},\"Action\":[\"s3:ListBucketMultipartUploads\",\"s3:GetBucketLocation\"],\"Resource\":[\"arn:aws:s3:::#bucketName#\"]},{\"Effect\":\"Allow\",\"Principal\":{\"AWS\":[\"*\"]},\"Action\":[\"s3:PutObject\",\"s3:AbortMultipartUpload\",\"s3:DeleteObject\",\"s3:ListMultipartUploadParts\"],\"Resource\":[\"arn:aws:s3:::#bucketName#/*\"]}]}";
-
-    private static final String READ_WRITE =
-        "{\"Version\":\"2012-10-17\",\"Statement\":[{\"Effect\":\"Allow\",\"Principal\":{\"AWS\":[\"*\"]},\"Action\":[\"s3:ListBucketMultipartUploads\",\"s3:GetBucketLocation\",\"s3:ListBucket\"],\"Resource\":[\"arn:aws:s3:::#bucketName#\"]},{\"Effect\":\"Allow\",\"Principal\":{\"AWS\":[\"*\"]},\"Action\":[\"s3:AbortMultipartUpload\",\"s3:DeleteObject\",\"s3:GetObject\",\"s3:ListMultipartUploadParts\",\"s3:PutObject\"],\"Resource\":[\"arn:aws:s3:::#bucketName#/*\"]}]}";
 
     private void setBucketPolicy(String bucketName, String config) {
         try {

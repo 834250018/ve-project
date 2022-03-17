@@ -45,7 +45,7 @@ public class UserUserServiceImpl implements UserUserService {
 
     @Override
     public void updateStatus(Long id, Integer status) {
-//        userUserMapper.updateStatus(id, status);
+        //        userUserMapper.updateStatus(id, status);
     }
 
 }

@@ -29,6 +29,9 @@ import java.util.concurrent.TimeUnit;
 @RefreshScope
 public class VerificationCodeServiceImpl implements VerificationCodeService {
 
+    private static final String TEMPLATE_CODE_VERIFICATION_CODE = "";
+    private static final String TEMPLATE_CODE_VERIFICATION_CODE_PARAM_CODE = "";
+    private static final String SIGN_NAME_1 = "";
     @Autowired
     private AmqpTemplate amqpTemplate;
     @Resource
@@ -37,10 +40,6 @@ public class VerificationCodeServiceImpl implements VerificationCodeService {
     private Boolean accessCodeSwitch;
     @Value("${access-sms-code:986654}")
     private String accessCode;
-
-    private static final String TEMPLATE_CODE_VERIFICATION_CODE = "";
-    private static final String TEMPLATE_CODE_VERIFICATION_CODE_PARAM_CODE = "";
-    private static final String SIGN_NAME_1 = "";
 
     @Override
     public void sendSMSCode(String prefixType, String phoneNo) {

@@ -1,27 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
-        <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.ve.message.dal.mapper.MessageMessageTemplateMapper">
 
     <resultMap type="cn.ve.message.dal.entity.MessageMessageTemplate" id="MessageMessageTemplateMap">
-                <result property="id" column="id" jdbcType="BIGINT"/>
-                <result property="creatorId" column="creator_id" jdbcType="VARCHAR"/>
-                <result property="updaterId" column="updater_id" jdbcType="VARCHAR"/>
-                <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
-                <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
-                <result property="creatorName" column="creator_name" jdbcType="VARCHAR"/>
-                <result property="updaterName" column="updater_name" jdbcType="VARCHAR"/>
-                <result property="deleted" column="deleted" jdbcType="INTEGER"/>
-                <result property="versions" column="versions" jdbcType="INTEGER"/>
-                <result property="remark" column="remark" jdbcType="VARCHAR"/>
-                <result property="templateTitle" column="template_title" jdbcType="VARCHAR"/>
-                <result property="templateContent" column="template_content" jdbcType="VARCHAR"/>
-                <result property="status" column="status" jdbcType="INTEGER"/>
-                <result property="routeUri" column="route_uri" jdbcType="VARCHAR"/>
-            </resultMap>
-    
+        <result property="id" column="id" jdbcType="BIGINT"/>
+        <result property="creatorId" column="creator_id" jdbcType="VARCHAR"/>
+        <result property="updaterId" column="updater_id" jdbcType="VARCHAR"/>
+        <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+        <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
+        <result property="creatorName" column="creator_name" jdbcType="VARCHAR"/>
+        <result property="updaterName" column="updater_name" jdbcType="VARCHAR"/>
+        <result property="deleted" column="deleted" jdbcType="INTEGER"/>
+        <result property="versions" column="versions" jdbcType="INTEGER"/>
+        <result property="remark" column="remark" jdbcType="VARCHAR"/>
+        <result property="templateTitle" column="template_title" jdbcType="VARCHAR"/>
+        <result property="templateContent" column="template_content" jdbcType="VARCHAR"/>
+        <result property="status" column="status" jdbcType="INTEGER"/>
+        <result property="routeUri" column="route_uri" jdbcType="VARCHAR"/>
+    </resultMap>
+
     <sql id="baseSql">
-        select
-        id, creator_id, updater_id, create_time, update_time, creator_name, updater_name, deleted, versions, remark, template_title, template_content, status, route_uri        from public.message_message_template
+        select id,
+               creator_id,
+               updater_id,
+               create_time,
+               update_time,
+               creator_name,
+               updater_name,
+               deleted,
+               versions,
+               remark,
+               template_title,
+               template_content,
+               status,
+               route_uri
+        from public.message_message_template
     </sql>
 </mapper>
 

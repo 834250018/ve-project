@@ -13,10 +13,7 @@ import org.apache.commons.lang3.StringUtils;
 @Getter
 @AllArgsConstructor
 public enum LoginTypeEnum {
-    WECHAT(0, "小程序登陆"),
-    PHONE(1, "手机号登录"),
-    PASSWORD(2, "账号密码登录")
-    ;
+    WECHAT(0, "小程序登陆"), PHONE(1, "手机号登录"), PASSWORD(2, "账号密码登录");
 
     private final int code;
     private final String name;

@@ -15,6 +15,8 @@ import java.io.File;
  */
 public class OCRUtils {
 
+    public static ITesseract instance = getiTesseract();
+
     private static ITesseract getiTesseract() {
         ITesseract instance = new Tesseract();
         //相对目录，这个时候tessdata目录和src目录平级
@@ -24,8 +26,6 @@ public class OCRUtils {
         instance.setLanguage("chi_sim");
         return instance;
     }
-
-    public static ITesseract instance = getiTesseract();
 
     /**
      * 通过图片获取身份证信息(身份证ocr)

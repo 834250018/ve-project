@@ -1,6 +1,5 @@
 package cn.ve.user.param;
 
-import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -17,7 +16,6 @@ public class UserLoginUpdateForm extends UserLoginCreateForm {
     /**
      * 主键id
      */
-    @ApiModelProperty("主键id")
     private Long id;
 
 }

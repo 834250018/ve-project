@@ -10,7 +10,7 @@ import java.io.Serializable;
  */
 
 @Data
-public  class BankCardOcrResp implements Serializable {
+public class BankCardOcrResp implements Serializable {
     /**
      * 无则为""
      */

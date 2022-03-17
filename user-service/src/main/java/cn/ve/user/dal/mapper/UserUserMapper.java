@@ -1,7 +1,7 @@
 package cn.ve.user.dal.mapper;
 
-import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import cn.ve.user.dal.entity.UserUser;
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
 /**
  * 用户表(UserUser)表数据库访问层

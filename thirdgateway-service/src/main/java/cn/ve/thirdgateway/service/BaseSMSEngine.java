@@ -8,6 +8,7 @@ import java.util.Map;
  */
 public abstract class BaseSMSEngine {
 
-    public abstract void sendMsg(String signName, String phoneNumbers, String templateCode, Map<String, String> paramMap);
+    public abstract void sendMsg(String signName, String phoneNumbers, String templateCode,
+        Map<String, String> paramMap);
 
 }

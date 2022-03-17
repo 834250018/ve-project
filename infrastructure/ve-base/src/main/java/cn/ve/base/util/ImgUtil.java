@@ -15,6 +15,10 @@ import java.util.Base64;
  */
 public class ImgUtil {
 
+    private static final int BLACK = new Color(0, 0, 0).getRGB();
+    private static final int WHITE = new Color(255, 255, 255).getRGB();
+    private static final double X_DOUBLE = 0.65d;
+
     /**
      * 图片压缩
      *
@@ -107,13 +111,6 @@ public class ImgUtil {
         ImageIO.write(bufferedImage, "jpeg", fos);
         fos.close();
     }
-
-
-
-
-    private static final int BLACK = new Color(0, 0, 0).getRGB();
-    private static final int WHITE = new Color(255, 255, 255).getRGB();
-    private static final double X_DOUBLE = 0.65d;
 
     public static void gray(File input, File output) throws IOException {
         if (output.exists()) {
@@ -228,10 +225,9 @@ public class ImgUtil {
     }
 
     /**
-     *
      * @param input
      * @param out
-     * @param s 0.65d
+     * @param s     0.65d
      * @throws IOException
      */
     public static void binarizationByAll(File input, File out, double s) throws IOException {
@@ -270,10 +266,9 @@ public class ImgUtil {
     }
 
     /**
-     *
      * @param input
      * @param out
-     * @param s 0.68d
+     * @param s     0.68d
      * @throws IOException
      */
     public static void binarizationByScope(File input, File out, double s) throws IOException {

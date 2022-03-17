@@ -30,9 +30,9 @@ public class AliUtil {
     private static final String ID_CARD_OCR_URL_SUFFIX = "/rest/160601/ocr/ocr_idcard.json";
     private static final String BANK_CARD_3_FACTOR_URL_PREFIX = "https://bankcard3c.shumaidata.com";
     private static final String BANK_CARD_3_FACTOR_URL_SUFFIX = "/bankcard3c";
+    private static final String HMAC_SHA256 = "HmacSHA256";
     private final String appKey;
     private final String appSecret;
-    private static final String HMAC_SHA256 = "HmacSHA256";
     private final long curTime;
     private final String curTimeStr;
 
@@ -44,6 +44,19 @@ public class AliUtil {
         dateFormat.setTimeZone(TimeZone.getTimeZone("GMT"));
         curTime = curDate.getTime();
         curTimeStr = dateFormat.format(curDate);
+    }
+
+    public static String buildRequestUrl(Map<String, String> params) {
+        StringBuilder url = new StringBuilder("?");
+        List<String> list = new ArrayList<>();
+        for (String key : params.keySet()) {
+            list.add(key + "=" + params.get(key) + "&");
+        }
+        list.sort(String::compareTo);
+        for (String s : list) {
+            url.append(s);
+        }
+        return url.substring(0, url.length() - 1);
     }
 
     public IdCardOcrResp idCardOcr(String imageBase64, String side) {
@@ -111,19 +124,6 @@ public class AliUtil {
             return bankCard3FactorResp;
         }
         return exchange.getBody();
-    }
-
-    public static String buildRequestUrl(Map<String, String> params) {
-        StringBuilder url = new StringBuilder("?");
-        List<String> list = new ArrayList<>();
-        for (String key : params.keySet()) {
-            list.add(key + "=" + params.get(key) + "&");
-        }
-        list.sort(String::compareTo);
-        for (String s : list) {
-            url.append(s);
-        }
-        return url.substring(0, url.length() - 1);
     }
 
     private HttpHeaders getAuthHeaders(HttpMethod method, String uriAndParams) {

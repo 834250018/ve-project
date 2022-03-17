@@ -27,13 +27,11 @@ public abstract class BaseController {
         return "0L";
     }
 
-
-
     protected void clearCookies(HttpServletResponse response) {
-//        addCookie(response, SessionCookie.Fields.expireAt, 1, 0);
-//        addCookie(response, SessionCookie.Fields.accessToken, 1, 0);
-//        addCookie(response, SessionCookie.Fields.loginId, 1, 0);
-//        addCookie(response, SessionCookie.Fields.userId, 1, 0);
+        //        addCookie(response, SessionCookie.Fields.expireAt, 1, 0);
+        //        addCookie(response, SessionCookie.Fields.accessToken, 1, 0);
+        //        addCookie(response, SessionCookie.Fields.loginId, 1, 0);
+        //        addCookie(response, SessionCookie.Fields.userId, 1, 0);
     }
 
     protected void addCookie(HttpServletResponse response, String key, Object value, int expiry) {

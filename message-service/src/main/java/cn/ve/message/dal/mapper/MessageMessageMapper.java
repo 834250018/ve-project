@@ -1,7 +1,7 @@
 package cn.ve.message.dal.mapper;
 
-import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import cn.ve.message.dal.entity.MessageMessage;
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
 /**
  * 系统消息通知表(MessageMessage)表数据库访问层

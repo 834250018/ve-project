@@ -5,15 +5,14 @@ import cn.hutool.core.date.DateTime;
 import cn.ve.base.pojo.FileType;
 import cn.ve.base.pojo.VeException;
 import cn.ve.commons.util.FilePathHelper;
-import cn.ve.rest.util.FileUtil;
 import cn.ve.file.util.MinioUtil;
+import cn.ve.rest.util.FileUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.IOUtils;
 import org.bouncycastle.util.encoders.Base64;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -30,7 +29,7 @@ import java.util.concurrent.TimeUnit;
 @Service
 public class MinioManager {
 
-//    @Resource
+    //    @Resource
     private MinioUtil minioUtil;
     @Value("${file.cleanup-expired-days}")
     private Integer cleanupExpiredDays;

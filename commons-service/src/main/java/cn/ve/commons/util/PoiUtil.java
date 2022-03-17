@@ -7,7 +7,10 @@ import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import javax.servlet.http.HttpServletResponse;
-import java.io.*;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.OutputStream;
 import java.net.URLEncoder;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
@@ -79,7 +82,7 @@ public class PoiUtil {
                             if ("@".equals(cell.getCellStyle().getDataFormatString())) {
                                 value = df.format(cell.getNumericCellValue());
                             } else if ("General".equals(cell.getCellStyle().getDataFormatString())) {
-                                value = ((XSSFCell) cell).getRawValue();
+                                value = ((XSSFCell)cell).getRawValue();
                             } else {
                                 value = sdf.format(DateUtil.getJavaDate(cell.getNumericCellValue()));
                             }
@@ -122,6 +125,7 @@ public class PoiUtil {
 
     /**
      * 把生成的excel写入Response
+     *
      * @param res
      * @param lists
      * @throws IOException
@@ -145,6 +149,7 @@ public class PoiUtil {
 
     /**
      * 把数据写入excel,只是简单的demo,代码跟随业务改变而改变
+     *
      * @param sheet
      * @param lists
      */

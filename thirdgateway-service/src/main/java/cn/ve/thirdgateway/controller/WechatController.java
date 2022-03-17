@@ -3,7 +3,6 @@ package cn.ve.thirdgateway.controller;
 import cn.ve.thirdgateway.pojo.UriParam;
 import cn.ve.thirdgateway.service.WechatService;
 import com.ijpay.core.kit.HttpKit;
-import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,7 +26,14 @@ public class WechatController {
     private WechatService wxService;
 
     //    @ReturnIgnore todo 需要处理响应,解包
-    @ApiOperation(value = "微信回调")
+
+    /**
+     * 微信回调
+     *
+     * @param uriParam
+     * @param request
+     * @return
+     */
     @RequestMapping(value = "wechatCallback", method = {RequestMethod.GET, RequestMethod.POST})
     public Long wechatCallback(UriParam uriParam, HttpServletRequest request) {
         // todo 接口应该拆成两个,一个是get请求,用于第一次绑定校验,一个是post请求,用于公众号实际回调

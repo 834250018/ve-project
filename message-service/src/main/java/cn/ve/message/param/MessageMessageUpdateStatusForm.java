@@ -1,8 +1,7 @@
 package cn.ve.message.param;
 
-import java.util.Date;
-import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
+
 import java.io.Serializable;
 
 /**
@@ -13,9 +12,13 @@ import java.io.Serializable;
  */
 @Data
 public class MessageMessageUpdateStatusForm implements Serializable {
-    @ApiModelProperty("主键id")
+    /**
+     * 主键id
+     */
     private Long id;
 
-    @ApiModelProperty("状态")
+    /**
+     * 状态
+     */
     private Integer status;
 }

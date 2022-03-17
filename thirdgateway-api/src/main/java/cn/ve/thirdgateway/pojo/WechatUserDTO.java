@@ -16,7 +16,7 @@ public class WechatUserDTO implements Serializable {
     private WatermarkDTO watermark;
 
     @Data
-    public static class WatermarkDTO{
+    public static class WatermarkDTO {
         private String timestamp;
         private String appid;
 

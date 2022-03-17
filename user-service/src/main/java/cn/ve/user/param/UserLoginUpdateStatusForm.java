@@ -1,8 +1,5 @@
 package cn.ve.user.param;
 
-import java.util.Date;
-
-import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -19,12 +16,10 @@ public class UserLoginUpdateStatusForm implements Serializable {
     /**
      * 主键id
      */
-    @ApiModelProperty("主键id")
     private Long id;
     /**
      * 状态: 0.未启用, 1.已启用
      */
-    @ApiModelProperty("状态")
     private Integer status;
 
 }

@@ -1,19 +1,17 @@
 package cn.ve.commons.controller;
 
 import cn.ve.base.pojo.VeException;
+import cn.ve.base.util.ImgUtil;
 import cn.ve.commons.manager.MinioManager;
 import cn.ve.commons.pojo.BankCardOCRDTO;
 import cn.ve.commons.pojo.IdCardOCRDTO;
-import cn.ve.rest.util.FileUtil;
-import cn.ve.base.util.ImgUtil;
 import cn.ve.commons.util.OCRUtils;
 import cn.ve.feign.pojo.CommonResult;
+import cn.ve.rest.util.FileUtil;
 import cn.ve.thirdgateway.api.ThirdgatewayApi;
 import cn.ve.thirdgateway.pojo.AliOCRParam;
 import cn.ve.thirdgateway.pojo.BankCardOcrResp;
 import cn.ve.thirdgateway.pojo.IdCardOcrResp;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.validation.annotation.Validated;
@@ -28,11 +26,12 @@ import javax.validation.constraints.Pattern;
 import java.io.File;
 
 /**
+ * 公共-文件上传
+ *
  * @author ve
  * @date 2021/8/6
  */
 @Slf4j
-@Api(value = "公共-文件上传", description = "公共-文件上传接口")
 @RequestMapping("/ocr")
 @RestController
 @Validated
@@ -44,7 +43,12 @@ public class OcrController {
     @Resource
     private ThirdgatewayApi thirdgatewayApi;
 
-    @ApiOperation(value = "(开源)身份证OCR并上传")
+    /**
+     * (开源)身份证OCR并上传
+     *
+     * @param multipartFile
+     * @return
+     */
     @PostMapping("/admin/v1/idCardByOS")
     public IdCardOCRDTO uploadIdCard(MultipartFile multipartFile) {
         File tempFile = FileUtil.getFile(multipartFile);
@@ -60,7 +64,12 @@ public class OcrController {
         }
     }
 
-    @ApiOperation(value = "(开源)银行卡OCR并上传")
+    /**
+     * (开源)银行卡OCR并上传
+     *
+     * @param multipartFile
+     * @return
+     */
     @PostMapping("/admin/v1/upload/bankCard")
     public BankCardOCRDTO uploadBankCard(MultipartFile multipartFile) {
         File tempFile = FileUtil.getFile(multipartFile);
@@ -76,7 +85,14 @@ public class OcrController {
         }
     }
 
-    @ApiOperation(value = "(阿里)身份证OCR并上传")
+    /**
+     * (阿里)身份证OCR并上传
+     *
+     * @param multipartFile
+     * @param side
+     * @param watermarkSkip
+     * @return
+     */
     @PostMapping("/admin/v1/upload/idCardByAli")
     public IdCardOcrResp uploadIdCardByAli(MultipartFile multipartFile,
         @RequestParam(value = "side", required = false) @Pattern(regexp = "^(face|back)$") String side,
@@ -109,7 +125,13 @@ public class OcrController {
         return data;
     }
 
-    @ApiOperation(value = "(阿里)银行卡OCR并上传")
+    /**
+     * (阿里)银行卡OCR并上传
+     *
+     * @param multipartFile
+     * @param watermarkSkip
+     * @return
+     */
     @PostMapping("/admin/v1/upload/bankCardByAli")
     public BankCardOcrResp uploadBankCardByAli(MultipartFile multipartFile,
         @RequestParam(value = "watermarkSkip", required = false) Boolean watermarkSkip) {

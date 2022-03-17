@@ -1,7 +1,5 @@
 package cn.ve.user.param;
 
-import java.util.Date;
-import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -14,6 +12,8 @@ import lombok.EqualsAndHashCode;
 @Data
 @EqualsAndHashCode(callSuper = true)
 public class UserLoginRelationUpdateForm extends UserLoginRelationCreateForm {
-    @ApiModelProperty("主键id")
+    /**
+     * 主键id
+     */
     private Long id;
 }

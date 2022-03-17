@@ -7,8 +7,6 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 
-import java.util.Date;
-
 /**
  * 用户表(UserLoginRelation)实体类
  *
@@ -22,7 +20,6 @@ import java.util.Date;
 @EqualsAndHashCode(callSuper = true)
 public class UserLoginRelation extends BaseEntity {
     private static final long serialVersionUID = -80291923820424731L;
-
 
     /**
      * 创建人名称

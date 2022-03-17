@@ -1,7 +1,6 @@
 package cn.ve.rest.pojo;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -19,26 +18,22 @@ public abstract class BaseQO implements Serializable {
      * 创建开始时间yyyy-MM-dd HH:mm:ss
      */
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    @ApiModelProperty("创建开始时间yyyy-MM-dd HH:mm:ss")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     private Date createTimeBegin;
     /**
      * 创建截止时间yyyyMMddHHmmss
      */
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    @ApiModelProperty("创建开始时间yyyy-MM-dd HH:mm:ss")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     private Date createTimeEnd;
     /**
      * 页面大小
      */
-    @ApiModelProperty("页面大小")
     private Integer pageSize;
 
     /**
      * 页码
      */
-    @ApiModelProperty("页码")
     private Integer pageNum;
 
 }
