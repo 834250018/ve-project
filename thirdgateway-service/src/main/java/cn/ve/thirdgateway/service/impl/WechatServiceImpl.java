@@ -3,7 +3,7 @@ package cn.ve.thirdgateway.service.impl;
 import cn.hutool.core.codec.Base64;
 import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.crypto.digest.DigestUtil;
-import cn.ve.base.pojo.VeException;
+import cn.ve.base.pojo.VeBaseException;
 import cn.ve.thirdgateway.dal.entity.WxUnionidRelation;
 import cn.ve.thirdgateway.dal.mapper.WxUnionidRelationMapper;
 import cn.ve.thirdgateway.pojo.*;
@@ -106,7 +106,7 @@ public class WechatServiceImpl implements WechatService {
         ResponseEntity<Map> objectResponseEntity = restTemplate.postForEntity(url, null, Map.class);
         if (objectResponseEntity.getStatusCode() != org.springframework.http.HttpStatus.OK) {
             log.error("请求微信服务异常_{}", objectResponseEntity.getStatusCode());
-            throw new VeException("请求微信服务异常");
+            throw new VeBaseException("请求微信服务异常");
         }
         Map map = objectResponseEntity.getBody();
         if (ObjectUtil.isNotEmpty(map) && ObjectUtil.isNotEmpty(map.get("access_token"))) {
@@ -145,7 +145,7 @@ public class WechatServiceImpl implements WechatService {
                     "https://api.weixin.qq.com/cgi-bin/user/info?access_token=" + accessToken + "&openid=" + openid,
                     Map.class);
                 if (queryUserEntity.getStatusCode() != org.springframework.http.HttpStatus.OK) {
-                    throw new VeException(400, "请求微信服务异常");
+                    throw new VeBaseException(400, "请求微信服务异常");
                 }
                 // 用户是否订阅该公众号标识，值为0时，代表此用户没有关注该公众号，拉取不到其余信息。
                 Integer subscribe = (Integer)queryUserEntity.getBody().get("subscribe");
@@ -220,7 +220,7 @@ public class WechatServiceImpl implements WechatService {
                 "https://api.weixin.qq.com/cgi-bin/user/info?access_token=" + getAccessToken(officialAccountAppid,
                     officialAccountSecret) + "&openid=" + fromUserName, Map.class);
             if (forEntity.getStatusCode() != org.springframework.http.HttpStatus.OK) {
-                throw new VeException(400, "请求微信服务异常");
+                throw new VeBaseException(400, "请求微信服务异常");
             }
             Object unionid = forEntity.getBody().get("unionid");
             if (unionid != null) {

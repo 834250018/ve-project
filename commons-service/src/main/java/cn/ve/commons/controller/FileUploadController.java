@@ -1,7 +1,7 @@
 package cn.ve.commons.controller;
 
 import cn.hutool.core.date.DateTime;
-import cn.ve.base.pojo.VeException;
+import cn.ve.base.pojo.VeBaseException;
 import cn.ve.base.util.StringConstant;
 import cn.ve.commons.api.CommonsApi;
 import cn.ve.commons.manager.MinioManager;
@@ -44,7 +44,7 @@ public class FileUploadController {
                 MinioUtil.TEMP_PATH + DateTime.now().toString(MinioUtil.CATALOG_DATE_FORMATTER) + StringConstant.SLASH
                     + multipartFile.getName(), multipartFile.getInputStream());
         } catch (IOException e) {
-            throw new VeException("获取文件异常");
+            throw new VeBaseException("获取文件异常");
         }
     }
 
@@ -61,7 +61,7 @@ public class FileUploadController {
                 DateTime.now().toString(MinioUtil.CATALOG_DATE_FORMATTER) + StringConstant.SLASH + multipartFile
                     .getName(), multipartFile.getInputStream());
         } catch (IOException e) {
-            throw new VeException("获取文件异常");
+            throw new VeBaseException("获取文件异常");
         }
     }
 
@@ -78,7 +78,7 @@ public class FileUploadController {
                 DateTime.now().toString(MinioUtil.CATALOG_DATE_FORMATTER) + StringConstant.SLASH + multipartFile
                     .getName(), multipartFile.getInputStream());
         } catch (IOException e) {
-            throw new VeException("获取文件异常");
+            throw new VeBaseException("获取文件异常");
         }
     }
 
@@ -120,10 +120,10 @@ public class FileUploadController {
         try {
             fileTags = minioManager.getFileTags(MinioUtil.PRIVATE_BUCKET, uri);
         } catch (Exception e) {
-            throw new VeException(403, "无权访问");
+            throw new VeBaseException(403, "无权访问");
         }
         if (!CommonsApi.PUBLIC_ACCESS_FILE.equals(fileTags.get(CommonsApi.PUBLIC_ACCESS_FILE))) {
-            throw new VeException(403, "无权访问");
+            throw new VeBaseException(403, "无权访问");
         }
         minioManager.getFile(uri, fileName, response);
     }
@@ -142,10 +142,10 @@ public class FileUploadController {
         try {
             fileTags = minioManager.getFileTags(MinioUtil.PRIVATE_BUCKET, uri);
         } catch (Exception e) {
-            throw new VeException(403, "无权访问");
+            throw new VeBaseException(403, "无权访问");
         }
         if (!CommonsApi.PUBLIC_ACCESS_FILE.equals(fileTags.get(CommonsApi.PUBLIC_ACCESS_FILE))) {
-            throw new VeException(403, "无权访问");
+            throw new VeBaseException(403, "无权访问");
         }
         minioManager.getFile(uri, fileName, response);
     }

@@ -1,6 +1,6 @@
 package cn.ve.thirdgateway.controller;
 
-import cn.ve.base.pojo.VeException;
+import cn.ve.base.pojo.VeBaseException;
 import cn.ve.feign.pojo.CommonResult;
 import cn.ve.thirdgateway.api.ThirdgatewayApi;
 import cn.ve.thirdgateway.pojo.*;
@@ -64,7 +64,7 @@ public class FeignController implements ThirdgatewayApi {
     @Override
     public CommonResult<BankCardOcrResp> bankCardOcr(@RequestBody AliOCRParam aliOCRParam) {
         if (StringUtils.isBlank(aliOCRParam.getImageBase64())) {
-            throw new VeException(400, "ImageBase64不能为空");
+            throw new VeBaseException(400, "ImageBase64不能为空");
         }
         return CommonResult.success(new AliUtil(aliAppKey, aliAppSecret).bankCardOcr(aliOCRParam.getImageBase64()));
     }
@@ -88,25 +88,27 @@ public class FeignController implements ThirdgatewayApi {
     }
 
     @Override
-    public String getPhoneByEncryptedData(@RequestParam("data") String data,
+    public CommonResult<String> getPhoneByEncryptedData(@RequestParam("data") String data,
         @RequestParam("secretKey") String secretKey, @RequestParam("ivString") String ivString) {
         WechatUserDTO decrypt = WechatUtil.decrypt(data, secretKey, ivString);
         if (!wechatMiniprogramAppid.equals(decrypt.getWatermark().getAppid())) {
             log.error("没找到对应appid:{}", decrypt.getWatermark().getAppid());
-            throw new VeException(500, "没找到对应appid");
+            throw new VeBaseException(500, "没找到对应appid");
         }
         log.info("水印时间:{}", decrypt.getWatermark().getTimestamp());
-        return decrypt.getPurePhoneNumber();
+        return CommonResult.success(decrypt.getPurePhoneNumber());
     }
 
     @Override
-    public void officialAccountMsg(@RequestBody OfficialAccountMsgParam param) {
+    public CommonResult<Object> officialAccountMsg(@RequestBody OfficialAccountMsgParam param) {
         wechatService.officialAccountMsg(param);
+        return CommonResult.success();
     }
 
     @Override
-    public void sendSms() {
+    public CommonResult<Object> sendSms() {
         baseSMSEngine.sendMsg("", "", "", new HashMap<>());
+        return CommonResult.success();
     }
 
 }

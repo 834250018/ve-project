@@ -1,6 +1,6 @@
 package cn.ve.commons.util;
 
-import cn.ve.base.pojo.VeException;
+import cn.ve.base.pojo.VeBaseException;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFCell;
@@ -36,7 +36,7 @@ public class PoiUtil {
         } else if (file.getName().endsWith(".xlsx")) {
             wb = new XSSFWorkbook(fis);
         } else {
-            throw new VeException("文件格式不正确");
+            throw new VeBaseException("文件格式不正确");
         }
         try {
             List<List<Object>> rowList = new ArrayList<>();

@@ -1,6 +1,6 @@
 package cn.ve.thirdgateway.util;
 
-import cn.ve.base.pojo.VeException;
+import cn.ve.base.pojo.VeBaseException;
 import cn.ve.base.util.ImgUtil;
 import cn.ve.thirdgateway.pojo.BaiduAuthResp;
 import cn.ve.thirdgateway.pojo.BaiduFaceMatchResp;
@@ -42,7 +42,7 @@ public class BaiduFaceUtils {
             this.ACCESS_TOKEN = resp.getBody().getAccess_token(); // todo 有效期为30天
         } catch (Exception e) {
             log.error(e.getMessage(), e);
-            throw new VeException("服务器异常");
+            throw new VeBaseException("服务器异常");
         }
     }
 

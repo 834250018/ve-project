@@ -1,6 +1,6 @@
 package cn.ve.file.util;
 
-import cn.ve.base.pojo.VeException;
+import cn.ve.base.pojo.VeBaseException;
 import cn.ve.base.util.StringConstant;
 import io.minio.*;
 import io.minio.http.Method;
@@ -74,7 +74,7 @@ public class MinioUtil {
             }
         } catch (Exception e) {
             log.error("minio服务异常【{}】", e.getMessage(), e);
-            throw new VeException("minio服务异常");
+            throw new VeBaseException("minio服务异常");
         }
     }
 
@@ -88,7 +88,7 @@ public class MinioUtil {
             minioClient.getBucketPolicy(GetBucketPolicyArgs.builder().bucket(bucketName).build());
         } catch (Exception e) {
             log.error("minio服务异常【{}】", e.getMessage(), e);
-            throw new VeException("minio服务异常");
+            throw new VeBaseException("minio服务异常");
         }
     }
 
@@ -99,7 +99,7 @@ public class MinioUtil {
                     .build());
         } catch (Exception e) {
             log.error("minio服务异常【{}】", e.getMessage(), e);
-            throw new VeException("minio服务异常");
+            throw new VeBaseException("minio服务异常");
         }
     }
 
@@ -119,7 +119,7 @@ public class MinioUtil {
             }
         } catch (Exception e) {
             log.error("minio服务异常【{}】", e.getMessage(), e);
-            throw new VeException("minio服务异常");
+            throw new VeBaseException("minio服务异常");
         }
     }
 
@@ -142,7 +142,7 @@ public class MinioUtil {
             return externalAddress + StringConstant.SLASH + bucketName + StringConstant.SLASH + resp.object();
         } catch (Exception e) {
             log.error("minio服务异常【{}】", e.getMessage(), e);
-            throw new VeException("minio服务异常");
+            throw new VeBaseException("minio服务异常");
         }
     }
 
@@ -156,7 +156,7 @@ public class MinioUtil {
             return minioClient.getObject(GetObjectArgs.builder().bucket(bucketName).object(uri).build());
         } catch (Exception e) {
             log.error("minio服务异常【{}】", e.getMessage(), e);
-            throw new VeException("minio服务异常");
+            throw new VeBaseException("minio服务异常");
         }
     }
 
@@ -176,7 +176,7 @@ public class MinioUtil {
                     .expiry(duration, unit).build());
         } catch (Exception e) {
             log.error("minio服务异常【{}】", e.getMessage(), e);
-            throw new VeException("minio服务异常");
+            throw new VeBaseException("minio服务异常");
         }
     }
 
@@ -194,7 +194,7 @@ public class MinioUtil {
             return new HashMap<>(objectTags.get());
         } catch (Exception e) {
             log.error("minio服务异常【{}】", e.getMessage(), e);
-            throw new VeException("minio服务异常");
+            throw new VeBaseException("minio服务异常");
         }
     }
 
@@ -210,7 +210,7 @@ public class MinioUtil {
                 SetObjectTagsArgs.builder().tags(new HashMap<>()).bucket(bucketName).object(uri).build());
         } catch (Exception e) {
             log.error("minio服务异常【{}】", e.getMessage(), e);
-            throw new VeException("minio服务异常");
+            throw new VeBaseException("minio服务异常");
         }
     }
 
@@ -228,7 +228,7 @@ public class MinioUtil {
             minioClient.setObjectTags(SetObjectTagsArgs.builder().tags(newTags).bucket(bucketName).object(uri).build());
         } catch (Exception e) {
             log.error("minio服务异常【{}】", e.getMessage(), e);
-            throw new VeException("minio服务异常");
+            throw new VeBaseException("minio服务异常");
         }
     }
 
@@ -248,7 +248,7 @@ public class MinioUtil {
             minioClient.setObjectTags(SetObjectTagsArgs.builder().tags(newTags).bucket(bucketName).object(uri).build());
         } catch (Exception e) {
             log.error("minio服务异常【{}】", e.getMessage(), e);
-            throw new VeException("minio服务异常");
+            throw new VeBaseException("minio服务异常");
         }
     }
 

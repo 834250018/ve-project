@@ -1,7 +1,7 @@
 package cn.ve.thirdgateway.util;
 
 import cn.hutool.core.codec.Base64Decoder;
-import cn.ve.base.pojo.VeException;
+import cn.ve.base.pojo.VeBaseException;
 import cn.ve.thirdgateway.pojo.WechatUserDTO;
 import com.alibaba.fastjson.JSON;
 import lombok.extern.slf4j.Slf4j;
@@ -34,7 +34,7 @@ public enum WechatUtil {
             return JSON.parseObject(new String(bytes), WechatUserDTO.class);
         } catch (Exception e) {
             log.error("微信解密异常:{}", e.getMessage(), e);
-            throw new VeException("服务器异常");
+            throw new VeBaseException("服务器异常");
         }
     }
 

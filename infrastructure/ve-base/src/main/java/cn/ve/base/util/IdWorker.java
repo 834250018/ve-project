@@ -1,6 +1,6 @@
 package cn.ve.base.util;
 
-import cn.ve.base.pojo.VeException;
+import cn.ve.base.pojo.VeBaseException;
 
 import java.util.Random;
 
@@ -88,7 +88,7 @@ public class IdWorker {
     private synchronized long getNextId() {
         long timestamp = timeGen();
         if (timestamp < lastTimestamp) {
-            throw new VeException(String.format("Clock moved backwards.  Refusing to generate id for %d milliseconds",
+            throw new VeBaseException(String.format("Clock moved backwards.  Refusing to generate id for %d milliseconds",
                 lastTimestamp - timestamp));
         }
         //表示是同一时间截内生成的id

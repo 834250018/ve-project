@@ -1,6 +1,6 @@
 package cn.ve.commons.controller;
 
-import cn.ve.base.pojo.VeException;
+import cn.ve.base.pojo.VeBaseException;
 import cn.ve.base.util.ImgUtil;
 import cn.ve.commons.manager.MinioManager;
 import cn.ve.commons.pojo.BankCardOCRDTO;
@@ -58,7 +58,7 @@ public class OcrController {
             return idCardOCRDTO;
         } catch (Exception e) {
             log.error("开源ocr识别异常: {}", e.getMessage(), e);
-            throw new VeException("开源ocr识别异常");
+            throw new VeBaseException("开源ocr识别异常");
         } finally {
             tempFile.delete();
         }
@@ -79,7 +79,7 @@ public class OcrController {
             return of;
         } catch (Exception e) {
             log.error("开源ocr识别异常: {}", e.getMessage(), e);
-            throw new VeException("开源ocr识别异常");
+            throw new VeBaseException("开源ocr识别异常");
         } finally {
             tempFile.delete();
         }
@@ -108,16 +108,16 @@ public class OcrController {
         CommonResult<IdCardOcrResp> idCardOcrResp;
         try {
             idCardOcrResp = thirdgatewayApi.idCardOcr(aliOCRParam);
-        } catch (VeException e) {
+        } catch (VeBaseException e) {
             log.error("阿里ocr识别异常: {}", e.getMessage(), e);
             throw e;
         } catch (Exception e) {
             log.error("阿里ocr识别异常: {}", e.getMessage(), e);
-            throw new VeException("异常");
+            throw new VeBaseException("异常");
         }
         if (idCardOcrResp.getCode() != 200) {
             log.error("阿里ocr识别异常: {}", idCardOcrResp.getMsg());
-            throw new VeException("异常");
+            throw new VeBaseException("异常");
         }
         IdCardOcrResp data = idCardOcrResp.getData();
         data.setFileUri(minioManager.uploadPrivateFile(tempFile.getName(), tempFile));
@@ -144,11 +144,11 @@ public class OcrController {
             bankCardOcrResp = thirdgatewayApi.bankCardOcr(aliOCRParam);
         } catch (Exception e) {
             log.error("阿里ocr识别异常: {}", e.getMessage(), e);
-            throw new VeException("异常");
+            throw new VeBaseException("异常");
         }
         if (bankCardOcrResp.getCode() != 200) {
             log.error("请求第三方服务异常: {}", bankCardOcrResp.getMsg());
-            throw new VeException("服务器异常");
+            throw new VeBaseException("服务器异常");
         }
         bankCardOcrResp.getData().setFileUri(minioManager.uploadPrivateFile(tempFile.getName(), tempFile));
         tempFile.delete();

@@ -33,7 +33,7 @@ public enum FileType implements Serializable {
         }
 
         if (fs == null)
-            throw new VeException(412, "暂不支持[" + name + "]文件类型");
+            throw new VeBaseException(412, "暂不支持[" + name + "]文件类型");
         return fs;
     }
 

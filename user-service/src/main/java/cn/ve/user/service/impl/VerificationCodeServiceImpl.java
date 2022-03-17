@@ -1,6 +1,6 @@
 package cn.ve.user.service.impl;
 
-import cn.ve.base.pojo.VeException;
+import cn.ve.base.pojo.VeBaseException;
 import cn.ve.base.util.StringConstant;
 import cn.ve.message.api.param.SmsMqParam;
 import cn.ve.user.service.VerificationCodeService;
@@ -67,10 +67,10 @@ public class VerificationCodeServiceImpl implements VerificationCodeService {
     private void checkFrequency(String key) {
         Boolean ok = redisTemplate.opsForValue().setIfAbsent("sms_frequency_" + key, "0", 1, TimeUnit.MINUTES);
         if (ok == null) {
-            throw new VeException(400, "操作太频繁");
+            throw new VeBaseException(400, "操作太频繁");
         }
         if (!ok) {
-            throw new VeException(400, "操作太频繁");
+            throw new VeBaseException(400, "操作太频繁");
         }
     }
 
@@ -92,7 +92,7 @@ public class VerificationCodeServiceImpl implements VerificationCodeService {
         // 校验验证码
         String sendCode = redisTemplate.opsForValue().get(prefixType + StringConstant.UNDERLINE + phoneNo);
         if (StringUtils.isBlank(sendCode) || !sendCode.equals(code)) {
-            throw new VeException("验证码错误");
+            throw new VeBaseException("验证码错误");
         }
     }
 }

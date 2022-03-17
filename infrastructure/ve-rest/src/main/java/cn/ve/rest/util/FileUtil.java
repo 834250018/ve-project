@@ -1,6 +1,6 @@
 package cn.ve.rest.util;
 
-import cn.ve.base.pojo.VeException;
+import cn.ve.base.pojo.VeBaseException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -21,7 +21,7 @@ public class FileUtil {
             multipartFile.transferTo(tempFile);
         } catch (IOException e) {
             log.error(e.getMessage(), e);
-            throw new VeException(400, "xxx");
+            throw new VeBaseException(400, "xxx");
         }
         return tempFile;
     }
@@ -31,7 +31,7 @@ public class FileUtil {
             return multipartFile.getInputStream();
         } catch (IOException e) {
             log.error("文件转换异常【{}】", e.getMessage(), e);
-            throw new VeException("文件转换异常");
+            throw new VeBaseException("文件转换异常");
         }
     }
 
@@ -45,7 +45,7 @@ public class FileUtil {
             os.close();
         } catch (Exception e) {
             log.error("文件转换异常【{}】", e.getMessage(), e);
-            throw new VeException("文件转换异常");
+            throw new VeBaseException("文件转换异常");
         }
         return source;
     }
@@ -67,7 +67,7 @@ public class FileUtil {
             is.close();
         } catch (Exception e) {
             log.error("文件转换异常【{}】", e.getMessage(), e);
-            throw new VeException("文件转换异常");
+            throw new VeBaseException("文件转换异常");
         }
         return source;
     }
@@ -77,7 +77,7 @@ public class FileUtil {
             return File.createTempFile(String.valueOf(System.currentTimeMillis()), fileName);
         } catch (IOException e) {
             log.error("创建缓存文件异常【{}】", e.getMessage(), e);
-            throw new VeException("创建缓存文件异常");
+            throw new VeBaseException("创建缓存文件异常");
         }
     }
 
@@ -86,7 +86,7 @@ public class FileUtil {
             return File.createTempFile(String.valueOf(System.currentTimeMillis()), TMP_SUFFIX);
         } catch (IOException e) {
             log.error("创建缓存文件异常【{}】", e.getMessage(), e);
-            throw new VeException("创建缓存文件异常");
+            throw new VeBaseException("创建缓存文件异常");
         }
     }
 
@@ -95,7 +95,7 @@ public class FileUtil {
             return new FileInputStream(file);
         } catch (FileNotFoundException e) {
             log.error("文件转换异常【{}】", e.getMessage(), e);
-            throw new VeException("文件转换异常");
+            throw new VeBaseException("文件转换异常");
         }
     }
 

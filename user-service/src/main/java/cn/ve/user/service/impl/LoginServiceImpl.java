@@ -1,7 +1,7 @@
 package cn.ve.user.service.impl;
 
 import cn.ve.base.constant.LoginTypeEnum;
-import cn.ve.base.pojo.VeException;
+import cn.ve.base.pojo.VeBaseException;
 import cn.ve.base.util.BeanUtils;
 import cn.ve.base.util.PasswordUtils;
 import cn.ve.base.util.StringConstant;
@@ -94,7 +94,7 @@ public class LoginServiceImpl implements LoginService {
         WechatOpenidDTO openidByJscode = getOpenidByJscode(jscode);
         if (openidByJscode.getErrcode() != null && !openidByJscode.getErrcode().equals(0)) {
             log.error("请求第三方网关异常_{}", openidByJscode.getErrmsg());
-            throw new VeException("微信请求异常");
+            throw new VeBaseException("微信请求异常");
         }
         // 查询用户是否存在
         int loginType = LoginTypeEnum.WECHAT.getCode();
@@ -127,7 +127,7 @@ public class LoginServiceImpl implements LoginService {
         WechatOpenidDTO openidByJscode = getOpenidByJscode(jscode);
         if (openidByJscode.getErrcode() != null && !openidByJscode.getErrcode().equals(0)) {
             log.error("请求第三方网关异常_{}", openidByJscode.getErrmsg());
-            throw new VeException("服务器异常");
+            throw new VeBaseException("服务器异常");
         }
         // 查询用户是否存在
         int loginType = LoginTypeEnum.WECHAT.getCode();
@@ -135,7 +135,7 @@ public class LoginServiceImpl implements LoginService {
             new LambdaQueryWrapper<UserLoginRelation>().eq(UserLoginRelation::getLoginType, loginType)
                 .eq(UserLoginRelation::getUsername, openidByJscode.getOpenid()));
         if (userLoginRelation == null) {
-            throw new VeException("账号不存在");
+            throw new VeBaseException("账号不存在");
         }
         // 如果数据库没有unionId,但第三方有,则更新unionId
         unionIdRelate(openidByJscode, userLoginRelation);
@@ -158,7 +158,7 @@ public class LoginServiceImpl implements LoginService {
         CommonResult<WechatOpenidDTO> openidByJscode = thirdgatewayApi.getOpenidByJscode(jscode);
         if (openidByJscode.getCode() != 200) {
             log.error("请求第三方网关异常_{}", openidByJscode.getMsg());
-            throw new VeException("服务器异常");
+            throw new VeBaseException("服务器异常");
         }
         return openidByJscode.getData();
     }
@@ -168,7 +168,9 @@ public class LoginServiceImpl implements LoginService {
     public String bindPhoneWithWechat(String uuid, String encryptedData, String iv, String inviterCode) {
         String json = redisTemplate.opsForValue().get(RedisPrefixTypeConstant.USER_WECHAT_BIND_PHONE + uuid);
         WechatOepnidWithNameDTO openidByJscode = JSON.parseObject(json, WechatOepnidWithNameDTO.class);
-        String phone = thirdgatewayApi.getPhoneByEncryptedData(encryptedData, openidByJscode.getSession_key(), iv);
+        CommonResult<String> phoneByEncryptedData =
+            thirdgatewayApi.getPhoneByEncryptedData(encryptedData, openidByJscode.getSession_key(), iv);
+        String phone = phoneByEncryptedData.getData();
         // 通过手机号查询登录方式,如果有,新增微信登录,如果没有新增账号,再新增手机号登录跟微信登录
         UserLoginRelation userLoginRelation = userLoginRelationMapper.selectOne(
             new LambdaQueryWrapper<UserLoginRelation>()
@@ -255,12 +257,12 @@ public class LoginServiceImpl implements LoginService {
                 .eq(UserLoginRelation::getLoginType, LoginTypeEnum.PASSWORD.getCode())
                 .eq(UserLoginRelation::getUsername, username));
         if (userLoginRelation == null) {
-            throw new VeException(401, "用户不存在");
+            throw new VeBaseException(401, "用户不存在");
         }
         // 检查密码是否正确
         if (!PasswordUtils.genPwdCiphertext(password, userLoginRelation.getSalt())
             .equals(userLoginRelation.getPassword())) {
-            throw new VeException(401, "用户不存在");
+            throw new VeBaseException(401, "用户不存在");
         }
         // 存储用户并返回token
         return user2Token(userLoginRelation);

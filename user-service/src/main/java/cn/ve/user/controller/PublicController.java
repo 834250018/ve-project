@@ -1,6 +1,6 @@
 package cn.ve.user.controller;
 
-import cn.ve.base.pojo.VeException;
+import cn.ve.base.pojo.VeBaseException;
 import cn.ve.rest.pojo.BaseController;
 import cn.ve.user.constant.RedisPrefixTypeConstant;
 import cn.ve.user.dto.LoginByWechatDTO;
@@ -136,7 +136,7 @@ public class PublicController extends BaseController {
         // 同一个账号一秒钟只能尝试一次
         String s = redisTemplate.opsForValue().get(RedisPrefixTypeConstant.USER_LOGGED_IN_TRY_COUNT + username);
         if (s != null) {
-            throw new VeException("操作太频繁");
+            throw new VeBaseException("操作太频繁");
         }
         redisTemplate.opsForValue()
             .set(RedisPrefixTypeConstant.USER_LOGGED_IN_TRY_COUNT + username, "1", 1L, TimeUnit.SECONDS);

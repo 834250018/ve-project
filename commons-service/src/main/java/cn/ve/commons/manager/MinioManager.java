@@ -3,7 +3,7 @@ package cn.ve.commons.manager;
 import cn.hutool.core.date.DateField;
 import cn.hutool.core.date.DateTime;
 import cn.ve.base.pojo.FileType;
-import cn.ve.base.pojo.VeException;
+import cn.ve.base.pojo.VeBaseException;
 import cn.ve.commons.util.FilePathHelper;
 import cn.ve.file.util.MinioUtil;
 import cn.ve.rest.util.FileUtil;
@@ -69,7 +69,7 @@ public class MinioManager {
             IOUtils.copy(fis, outputStream);
             return Base64.toBase64String(outputStream.toByteArray());
         } catch (IOException e) {
-            throw new VeException(e.getMessage());
+            throw new VeBaseException(e.getMessage());
         }
     }
 
@@ -90,7 +90,7 @@ public class MinioManager {
         try {
             IOUtils.copy(fis, response.getOutputStream());
         } catch (IOException e) {
-            throw new VeException(e);
+            throw new VeBaseException(e);
         }
     }
 

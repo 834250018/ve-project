@@ -24,12 +24,12 @@ public interface ThirdgatewayApi {
     CommonResult<WechatOpenidDTO> getOpenidByJscode(@RequestParam("jscode") String jscode);
 
     @GetMapping("/thirdgateway/admin/v1.0/getPhoneByEncryptedData")
-    String getPhoneByEncryptedData(@RequestParam("data") String data, @RequestParam("secretKey") String secretKey,
+    CommonResult<String> getPhoneByEncryptedData(@RequestParam("data") String data, @RequestParam("secretKey") String secretKey,
         @RequestParam("ivString") String ivString);
 
     @PostMapping("/thirdgateway/admin/v1.0/officialAccountMsg")
-    void officialAccountMsg(@RequestBody OfficialAccountMsgParam param);
+    CommonResult<Object> officialAccountMsg(@RequestBody OfficialAccountMsgParam param);
 
     @PostMapping("/thirdgateway/admin/v1.0/sendSms")
-    void sendSms();
+    CommonResult<Object> sendSms();
 }
