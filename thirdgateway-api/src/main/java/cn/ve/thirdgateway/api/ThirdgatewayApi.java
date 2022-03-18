@@ -1,5 +1,6 @@
 package cn.ve.thirdgateway.api;
 
+import cn.ve.feign.config.FeignConfiguration;
 import cn.ve.feign.pojo.CommonResult;
 import cn.ve.thirdgateway.pojo.*;
 import org.springframework.cloud.openfeign.FeignClient;
@@ -8,7 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 
-@FeignClient(name = "commons-provider")
+@FeignClient(name = "thirdgateway-provider", configuration = FeignConfiguration.class)
 public interface ThirdgatewayApi {
 
     @PostMapping("/thirdgateway/admin/v1.0/idCardOcr")
@@ -24,8 +25,8 @@ public interface ThirdgatewayApi {
     CommonResult<WechatOpenidDTO> getOpenidByJscode(@RequestParam("jscode") String jscode);
 
     @GetMapping("/thirdgateway/admin/v1.0/getPhoneByEncryptedData")
-    CommonResult<String> getPhoneByEncryptedData(@RequestParam("data") String data, @RequestParam("secretKey") String secretKey,
-        @RequestParam("ivString") String ivString);
+    CommonResult<String> getPhoneByEncryptedData(@RequestParam("data") String data,
+        @RequestParam("secretKey") String secretKey, @RequestParam("ivString") String ivString);
 
     @PostMapping("/thirdgateway/admin/v1.0/officialAccountMsg")
     CommonResult<Object> officialAccountMsg(@RequestBody OfficialAccountMsgParam param);

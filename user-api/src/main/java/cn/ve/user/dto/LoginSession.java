@@ -7,11 +7,11 @@ public class LoginSession {
     /**
      * 用户表id
      */
-    private String userId;
+    private Long userId;
     /**
      * 登录表id
      */
-    private String loginId;
+    private Long loginId;
     /**
      * 手机号码
      */

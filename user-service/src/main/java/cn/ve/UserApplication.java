@@ -1,4 +1,4 @@
-package cn.ve.user;
+package cn.ve;
 
 import cn.hutool.core.codec.Base64Encoder;
 import cn.ve.base.util.IdUtil;
@@ -8,10 +8,12 @@ import cn.ve.user.dal.entity.UserUser;
 import cn.ve.user.dal.mapper.UserLoginRelationMapper;
 import cn.ve.user.dal.mapper.UserUserMapper;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import lombok.extern.slf4j.Slf4j;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.util.CollectionUtils;
 
@@ -20,11 +22,12 @@ import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.util.List;
 
+@Slf4j
 @MapperScan({"cn.ve.user.dal.mapper"})
+@EnableFeignClients
 @SpringBootApplication
-@EnableTransactionManagement // 开启事务
 //@EnableDiscoveryClient // 开启注册发现
-//@EnableFeignClients(basePackages = {"cn.ve"})
+@EnableTransactionManagement // 开启事务
 public class UserApplication implements CommandLineRunner {
     @Resource
     private UserLoginRelationMapper userLoginRelationMapper;
@@ -39,6 +42,7 @@ public class UserApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
+        log.error("user_test:user_test-user_test");
         // 测试数据库
         //        checkAdminExists("root");
         // 测试redis

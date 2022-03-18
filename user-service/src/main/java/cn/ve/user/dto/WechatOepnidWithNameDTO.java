@@ -5,10 +5,10 @@ import lombok.Data;
 import lombok.experimental.FieldNameConstants;
 
 /**
- * @author <a href="mailto:singofu@163.com">singofu</a>
- * @description <br>
- * @date 2019年7月3日
- * @Copyright (c) 2019, singofu.com
+ * 微信响应体
+ *
+ * @author ve
+ * @since 2022-02-23 14:15:26
  */
 @Data
 @FieldNameConstants

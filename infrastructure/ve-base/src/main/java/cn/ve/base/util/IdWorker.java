@@ -88,8 +88,9 @@ public class IdWorker {
     private synchronized long getNextId() {
         long timestamp = timeGen();
         if (timestamp < lastTimestamp) {
-            throw new VeBaseException(String.format("Clock moved backwards.  Refusing to generate id for %d milliseconds",
-                lastTimestamp - timestamp));
+            throw new VeBaseException(String
+                .format("Clock moved backwards.  Refusing to generate id for %d milliseconds",
+                    lastTimestamp - timestamp));
         }
         //表示是同一时间截内生成的id
         if (timestamp == lastTimestamp) {

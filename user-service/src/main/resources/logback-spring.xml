@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+    <appender name="stdout" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%level] [BIZ:%X{bizFlow}] [SYS:%X{sysFlow}] %logger{36} - %msg%n
+            </pattern>
+        </encoder>
+    </appender>
+
+    <appender name="gelf" class="de.siegmar.logbackgelf.GelfUdpAppender">
+        <graylogHost>${logging.gelf.ip}</graylogHost>
+        <graylogPort>${logging.gelf.port}</graylogPort>
+        <maxChunkSize>508</maxChunkSize>
+        <useCompression>true</useCompression>
+    </appender>
+    <logger name="com.ve" level="debug"/>
+    <logger name="com.alibaba.nacos" level="error"/>
+    <logger name="com.xxl.job" level="off"/>
+
+    <!--root是默认的logger 这里设定输出级别是debug-->
+    <root level="debug">
+        <!--定义了两个appender，日志会通过往这两个appender里面写-->
+        <appender-ref ref="stdout"/>
+        <appender-ref ref="gelf"/>
+    </root>
+
+</configuration>

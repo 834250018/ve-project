@@ -22,7 +22,6 @@ import com.alibaba.fastjson.JSON;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
-import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -47,8 +46,6 @@ public class LoginServiceImpl implements LoginService {
     private UserLoginRelationMapper userLoginRelationMapper;
     @Resource
     private UserUserMapper userUserMapper;
-    @Resource
-    private RabbitTemplate rabbitTemplate;
     @Resource
     private VerificationCodeService verificationCodeService;
 

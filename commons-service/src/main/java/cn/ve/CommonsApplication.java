@@ -1,4 +1,4 @@
-package cn.ve.commons;
+package cn.ve;
 
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
@@ -8,10 +8,10 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @MapperScan({"cn.ve.commons.dal.mapper"})
+@EnableFeignClients
 @SpringBootApplication
-@EnableTransactionManagement // 开启事务
 @EnableDiscoveryClient // 开启注册发现
-@EnableFeignClients(basePackages = {"cn.ve"})
+@EnableTransactionManagement // 开启事务
 public class CommonsApplication {
     public static void main(String[] args) {
         SpringApplication.run(CommonsApplication.class, args);
