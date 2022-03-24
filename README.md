@@ -1,6 +1,6 @@
 ## ve-project
 
-#### 项目结构
+### 项目结构
 
 * **infrastructure** 基础设施
     * **ve-base** 公共依赖
@@ -36,15 +36,33 @@
     * 账号密码登录
     * 用户_登录表设计
 
-#### TODO:
+### TODO:
 
 1. graylog
-1. websocket
-1. 去掉swagger
-1. 国际化
-1. 发邮件
-1. 七牛文件服务器
-1. activiti工作流引擎
-1. 实现api网关
-1. 短信业务流程改造,远程调用(同步,实时返回调用结构,然后异步存储结果)
-1. 其他基础功能...
+2. websocket
+3. 去掉swagger
+4. 国际化
+5. 发邮件
+6. 七牛文件服务器
+7. activiti工作流引擎
+8. 实现api网关
+9. 短信业务流程改造,远程调用(同步,实时返回调用结构,然后异步存储结果)
+10. 其他基础功能...
+
+### STARTUP:
+###### 使用docker快速部署相关中间件
+```
+1. 一键安装docker
+curl -sSL https://get.daocloud.io/docker | sh
+2. 安装pgsql
+docker run --name postgres -e POSTGRES_PASSWORD=ve2021.Ve -p 10101:5432 --restart=always -v /var/data/postgresql/data:/var/lib/postgresql/data -d postgres
+3. 安装rabbitmq
+docker run -d --name rabbitmq --restart=always -p 10102:5672 -p 10201:15672 -v /var/data/rabbitmq/data:/var/lib/rabbitmq -e RABBITMQ_DEFAULT_VHOST=local  -e RABBITMQ_DEFAULT_USER=admin -e RABBITMQ_DEFAULT_PASS=admin rabbitmq:3.9.5-management
+4. 安装redis
+docker run -d --name redis -p 10103:6379 --restart=always redis --requirepass ve2021.Ve
+5. 安装nacos
+docker  run --name nacos -d -p 10202:8848 --privileged=true --restart=always -e JVM_XMS=256m -e JVM_XMX=256m -e MODE=standalone -v /var/data/nacos/logs:/home/nacos/logs -v /var/data/nacos/init.d:/home/nacos/init.d nacos/nacos-server
+6. nacos创建local命名空间
+7. 目前暂时可以启动各个服务了.其他还没看
+* todo...
+```

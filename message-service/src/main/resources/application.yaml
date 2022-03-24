@@ -10,7 +10,7 @@ spring:
     username: postgres
     password: TpzS5zHVnPSF
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://0.0.0.0:20102/saas-dev?useSSL=false&seUnicode=true&characterEncoding=UTF-8
+    url: jdbc:postgresql://192.168.0.114:10101/saas-dev?useSSL=false&seUnicode=true&characterEncoding=UTF-8
     platform: postgres
   servlet:
     multipart:
@@ -19,7 +19,7 @@ spring:
   main:
     allow-bean-definition-overriding: true
   rabbitmq:
-    host: 192.168.1.104
+    host: 192.168.0.114
     port: 10102
     username: admin
     password: admin
@@ -33,7 +33,7 @@ spring:
     timeout: 2000
     password:
     port: 10103
-    host: 192.168.1.104
+    host: 192.168.0.114
 mybatis:
   mapper-locations: classpath:mapper/**/*.xml
   type-aliases-package: cn.ve.message.dal.entity

@@ -1,3 +1,4 @@
+/*
 package cn.ve.commons.test;
 
 import freemarker.template.Configuration;
@@ -17,12 +18,14 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
+*/
 /**
  * @author ve
  * @date 2019/7/24 13:29
- */
-@SpringBootTest
-@RunWith(SpringRunner.class)
+ *//*
+
+//@SpringBootTest
+//@RunWith(SpringRunner.class)
 public class TestCodeGenerator {
 
     public static final String RESOURCES_PATH = "src/main/resources/templates";
@@ -62,4 +65,4 @@ public class TestCodeGenerator {
         }
     }
 
-}
+}*/
