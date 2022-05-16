@@ -10,7 +10,7 @@ spring:
     password: ve2021.Ve
     username: postgres
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://192.168.0.114:10101/local?useSSL=false&seUnicode=true&characterEncoding=UTF-8
+    url: jdbc:postgresql://192.168.1.102:10101/local?useSSL=false&seUnicode=true&characterEncoding=UTF-8
     platform: postgres
   servlet:
     multipart:
@@ -19,7 +19,7 @@ spring:
   main:
     allow-bean-definition-overriding: true
   rabbitmq:
-    host: 192.168.0.114
+    host: 192.168.1.102
     port: 10102
     username: admin
     password: admin
@@ -33,14 +33,14 @@ spring:
     timeout: 2000
     password:
     port: 10103
-    host: 192.168.0.114
+    host: 192.168.1.102
 mybatis:
   mapper-locations: classpath:mapper/**/*.xml
   type-aliases-package: cn.ve.commons.dal.entity
 
 minio:
   #内网传输地址
-  local-url: http://192.168.0.114:9001
+  local-url: http://192.168.1.102:9001
   #外网访问地址
   url: https://devminio.bnhl8.com
   access-key: minio
