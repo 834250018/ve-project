@@ -117,10 +117,10 @@ public class PoiUtil {
         for (int c = row.getFirstCellNum(); c <= row.getLastCellNum(); c++) {
             Cell cell = row.getCell(c);
             if (cell != null && cell.getCellType() != CellType.BLANK) {
-                return false;
+                return Boolean.FALSE;
             }
         }
-        return true;
+        return Boolean.TRUE;
     }
 
     /**

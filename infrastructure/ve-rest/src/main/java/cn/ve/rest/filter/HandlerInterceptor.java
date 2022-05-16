@@ -30,7 +30,7 @@ public class HandlerInterceptor extends HandlerInterceptorAdapter {
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
         throws Exception {
         if (handler instanceof ResourceHttpRequestHandler) {
-            return true;
+            return Boolean.TRUE;
         }
         // 设置requestId
         initRequestId(request);
@@ -42,18 +42,18 @@ public class HandlerInterceptor extends HandlerInterceptorAdapter {
             boolean feignStatus = aClass.isAnnotationPresent(FeignClient.class);
             if (feignStatus) {
                 setFeignRequestHeader(request);
-                return true;
+                return Boolean.TRUE;
             }
         }
 
         // 检查权限cookie->userInfo->holder
         boolean ignoreAuthCheck = handlerMethod.getMethod().isAnnotationPresent(AuthIgnore.class);
         if (ignoreAuthCheck) {
-            return true;
+            return Boolean.TRUE;
         }
 
         checkAuth(request);
-        return true;
+        return Boolean.TRUE;
     }
 
     private void initRequestId(HttpServletRequest request) {

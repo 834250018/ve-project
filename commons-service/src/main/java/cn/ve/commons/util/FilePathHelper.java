@@ -4,6 +4,7 @@
 package cn.ve.commons.util;
 
 import cn.ve.base.pojo.FileType;
+import cn.ve.base.util.StringConstant;
 
 public class FilePathHelper {
 
@@ -12,8 +13,8 @@ public class FilePathHelper {
             filePath = filePath.substring(filePath.lastIndexOf("/"));
         }
         filePath = filePath.split("\\?")[0];
-        if (filePath.contains(".")) {
-            String suffix = filePath.substring(filePath.lastIndexOf(".") + 1);
+        if (filePath.contains(StringConstant.DOT)) {
+            String suffix = filePath.substring(filePath.lastIndexOf(StringConstant.DOT) + 1);
             return FileType.valueOf2(suffix);
         }
         return null;

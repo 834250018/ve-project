@@ -103,7 +103,7 @@ public class CsvUtils<T> {
                     if (o == null) {
                         text = "";
                     } else if (o instanceof Date) {
-                        text = "_" + simpleDateFormat.format(o);
+                        text = StringConstant.UNDERLINE + simpleDateFormat.format(o);
                     } else if (o instanceof String) {
                         if (((String)o).length() == 11) {
                             // 假设为手机号

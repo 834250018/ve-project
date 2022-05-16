@@ -34,7 +34,7 @@ public class NettyServer {
                 protected void initChannel(SocketChannel socketChannel) throws Exception {
                     socketChannel.pipeline().addLast(new DiscardServerHandler4());
                 }
-            }).option(ChannelOption.SO_BACKLOG, 128).childOption(ChannelOption.SO_KEEPALIVE, true);
+            }).option(ChannelOption.SO_BACKLOG, 128).childOption(ChannelOption.SO_KEEPALIVE, Boolean.TRUE);
         System.out.println("启动加载netty2");
         ChannelFuture channelFuture = b.bind(10010).sync();
         if (channelFuture.isSuccess()) {

@@ -41,10 +41,10 @@ public class OCRUtils {
         File grayFile = File.createTempFile(String.valueOf(System.currentTimeMillis()), ".png");
         ImgUtil.gray(input, grayFile);
         // 截取身份证号码
-        String idNoOCRResult = idCardOCR0(false, grayFile, 0, (int)(height * 0.75), width, (int)(height * 0.166666));
+        String idNoOCRResult = idCardOCR0(Boolean.FALSE, grayFile, 0, (int)(height * 0.75), width, (int)(height * 0.166666));
         // 截取身份证个人信息
         String ocrText =
-            idCardOCR0(true, grayFile, (int)(width * 0.07650), (int)(height * 0.11666), (int)(width * 0.546448),
+            idCardOCR0(Boolean.TRUE, grayFile, (int)(width * 0.07650), (int)(height * 0.11666), (int)(width * 0.546448),
                 (int)(height * 0.583333));
         IdCardOCRDTO of = IdCardOCRDTO.of(ocrText, idNoOCRResult);
         grayFile.delete();

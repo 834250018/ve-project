@@ -111,7 +111,7 @@ public class MinioUtil {
     public void clearTempBucket(Date date) {
         Iterable<Result<Item>> results = minioClient.listObjects(ListObjectsArgs.builder().bucket(PUBLIC_BUCKET)
             .prefix(TEMP_PATH + new SimpleDateFormat(CATALOG_DATE_FORMATTER).format(date) + StringConstant.SLASH)
-            .recursive(true).build());
+            .recursive(Boolean.TRUE).build());
         try {
             for (Result<Item> itemResult : results) {
                 minioClient.removeObject(

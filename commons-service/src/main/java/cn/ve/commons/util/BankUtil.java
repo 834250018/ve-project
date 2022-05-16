@@ -408,7 +408,7 @@ public class BankUtil {
     public static boolean checkBankCard(String cardId) {
         char bit = getBankCardCheckCode(cardId.substring(0, cardId.length() - 1));
         if (bit == 'N') {
-            return false;
+            return Boolean.FALSE;
         }
         return cardId.charAt(cardId.length() - 1) == bit;
     }

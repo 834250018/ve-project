@@ -22,6 +22,10 @@ public interface StringConstant {
      * 字符串常量：点 {@code "."}
      */
     String DOT = ".";
+    /**
+     * 字符串常量：井 {@code "#"}
+     */
+    String POUND = "#";
 
     /**
      * 字符串常量：双点 {@code ".."} <br>

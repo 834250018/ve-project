@@ -53,11 +53,11 @@ public class RabbitMQInitializer {
 
     private void userUpdatedFanout(AmqpAdmin amqpAdmin) {
         FanoutExchange userUpdatedFanoutExchange =
-            new FanoutExchange(MqConstant.USER2ALL_UPDATED_EXCHANGE, true, false);
+            new FanoutExchange(MqConstant.USER2ALL_UPDATED_EXCHANGE, Boolean.TRUE, Boolean.FALSE);
         amqpAdmin.declareExchange(userUpdatedFanoutExchange);
-        Queue queue1 = new Queue(MqConstant.USER2ALL_UPDATED_FANOUT_QUEUE_USER, true);
+        Queue queue1 = new Queue(MqConstant.USER2ALL_UPDATED_FANOUT_QUEUE_USER, Boolean.TRUE);
         amqpAdmin.declareQueue(queue1);
-        Queue queue3 = new Queue(MqConstant.USER2ALL_UPDATED_FANOUT_QUEUE_MARKETING, true);
+        Queue queue3 = new Queue(MqConstant.USER2ALL_UPDATED_FANOUT_QUEUE_MARKETING, Boolean.TRUE);
         amqpAdmin.declareQueue(queue3);
         Binding binding1 = BindingBuilder.bind(queue1).to(userUpdatedFanoutExchange);
         amqpAdmin.declareBinding(binding1);
@@ -81,9 +81,9 @@ public class RabbitMQInitializer {
      * @param routingKey   配对键
      */
     private void directQueueDurable(AmqpAdmin amqpAdmin, String queueName, String exchangeName, String routingKey) {
-        Queue queue = new Queue(queueName, true);
+        Queue queue = new Queue(queueName, Boolean.TRUE);
         amqpAdmin.declareQueue(queue);
-        DirectExchange smsDirectExchange = new DirectExchange(exchangeName, true, false);
+        DirectExchange smsDirectExchange = new DirectExchange(exchangeName, Boolean.TRUE, Boolean.FALSE);
         amqpAdmin.declareExchange(smsDirectExchange);
         Binding binding = BindingBuilder.bind(queue).to(smsDirectExchange).with(routingKey);
         amqpAdmin.declareBinding(binding);
@@ -98,9 +98,9 @@ public class RabbitMQInitializer {
      * @param routingKey   配对键
      */
     private void delayQueueDurable(AmqpAdmin amqpAdmin, String queueName, String exchangeName, String routingKey) {
-        Queue queue = new Queue(queueName, true);
+        Queue queue = new Queue(queueName, Boolean.TRUE);
         amqpAdmin.declareQueue(queue);
-        CustomExchange exchange = new CustomExchange(exchangeName, X_DELAYED_MESSAGE, true, false, getDelayQueueArgs());
+        CustomExchange exchange = new CustomExchange(exchangeName, X_DELAYED_MESSAGE, Boolean.TRUE, Boolean.FALSE, getDelayQueueArgs());
         amqpAdmin.declareExchange(exchange);
         Binding binding = BindingBuilder.bind(queue).to(exchange).with(routingKey).noargs();
         amqpAdmin.declareBinding(binding);

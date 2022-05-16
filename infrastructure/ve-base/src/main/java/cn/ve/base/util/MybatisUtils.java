@@ -23,8 +23,8 @@ public interface MybatisUtils {
         if (id.contains("_COUNT")) {
             id = id.replace("_COUNT", "");
         }
-        String className = id.substring(0, id.lastIndexOf("."));
-        String methodName = id.substring(id.lastIndexOf(".") + 1);
+        String className = id.substring(0, id.lastIndexOf(StringConstant.DOT));
+        String methodName = id.substring(id.lastIndexOf(StringConstant.DOT) + 1);
         Class<?> clazz;
         try {
             clazz = Class.forName(className);

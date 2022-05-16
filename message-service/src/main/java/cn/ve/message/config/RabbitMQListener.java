@@ -1,6 +1,7 @@
 package cn.ve.message.config;
 
 import cn.ve.base.constant.MqConstant;
+import cn.ve.base.util.StringConstant;
 import cn.ve.message.api.param.MessageMqParam;
 import cn.ve.message.api.param.SmsMqParam;
 import cn.ve.message.dal.entity.MessageMessage;
@@ -41,7 +42,7 @@ public class RabbitMQListener {
     @RabbitListener(queues = MqConstant.ALL2MESSAGE_MESSAGE_QUEUE)
     public void messageRabbitListener(Message message) {
         try {
-            MessageMqParam messageMqParam = (MessageMqParam)SerializationUtils.deserialize(message.getBody());
+            MessageMqParam messageMqParam = (MessageMqParam) SerializationUtils.deserialize(message.getBody());
             log.info(JSON.toJSONString(messageMqParam));
             MessageMessage messageMessage = new MessageMessage();
             messageMessage.setUserId(messageMqParam.getUserId());
@@ -49,7 +50,7 @@ public class RabbitMQListener {
             messageMessage.setDetailId(messageMqParam.getDetailId());
             messageMessage.setTemplateId(messageMqParam.getTemplateId());
             MessageMessageTemplate messageMessageTemplate =
-                messageMessageTemplateMapper.selectById(messageMqParam.getTemplateId());
+                    messageMessageTemplateMapper.selectById(messageMqParam.getTemplateId());
             if (messageMessageTemplate == null || messageMessageTemplate.getStatus() == 0) {
                 // 模板不存在或模板未启用,直接丢弃消息
                 return;
@@ -64,9 +65,10 @@ public class RabbitMQListener {
                         log.error("messageRabbitListener_参数{}的值为null", paramName);
                         return;
                     }
-                    messageMessage.setTitle(messageMessage.getTitle().replaceAll("#" + paramName + "#", paramValue));
+
+                    messageMessage.setTitle(messageMessage.getTitle().replaceAll(StringConstant.POUND + paramName + StringConstant.POUND, paramValue));
                     messageMessage
-                        .setContent(messageMessage.getContent().replaceAll("#" + paramName + "#", paramValue));
+                            .setContent(messageMessage.getContent().replaceAll(StringConstant.POUND + paramName + StringConstant.POUND, paramValue));
                 });
             }
             messageMessageMapper.insert(messageMessage);
@@ -78,7 +80,7 @@ public class RabbitMQListener {
     // 消费者使用以下代码
     @RabbitListener(queues = MqConstant.ALL2MESSAGE_SMS_QUEUE)
     public void smsRabbitListener(Message message) {
-        SmsMqParam smsMqParam = (SmsMqParam)SerializationUtils.deserialize(message.getBody());
+        SmsMqParam smsMqParam = (SmsMqParam) SerializationUtils.deserialize(message.getBody());
         log.info(JSON.toJSONString(smsMqParam));
         if (!rabbitMQConstant.getSmsSwitch()) {
             return;
