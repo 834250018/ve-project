@@ -1,6 +1,9 @@
 server:
   port: 10003
 spring:
+  mvc:
+    throw-exception-if-no-handler-found: true
+    static-path-pattern: /statics/**
   datasource:
     tomcat:
       max-wait: 14400
@@ -34,9 +37,6 @@ spring:
     password:
     port: 10103
     host: 192.168.1.102
-  mvc:
-    throw-exception-if-no-handler-found: true
-    static-path-pattern: /statics/**
 mybatis:
   mapper-locations: classpath:mapper/**/*.xml
   type-aliases-package: cn.ve.thirdgateway.dal.entity
