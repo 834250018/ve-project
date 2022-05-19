@@ -40,3 +40,9 @@ spring:
 mybatis:
   mapper-locations: classpath:mapper/**/*.xml
   type-aliases-package: cn.ve.message.dal.entity
+
+logging:
+  gelf:
+    ip: 127.0.0.1
+    port: 12201
+  file: classpath:logback-spring.xml

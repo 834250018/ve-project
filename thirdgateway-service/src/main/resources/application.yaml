@@ -64,3 +64,9 @@ wechat:
   callback:
     token: 1
     encoding-AES-Key: 1
+
+logging:
+  gelf:
+    ip: 127.0.0.1
+    port: 12201
+  file: classpath:logback-spring.xml

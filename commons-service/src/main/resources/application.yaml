@@ -50,3 +50,9 @@ minio:
   secret-key: minio
 file:
   cleanup-expired-days: 30
+
+logging:
+  gelf:
+    ip: 127.0.0.1
+    port: 12201
+  file: classpath:logback-spring.xml

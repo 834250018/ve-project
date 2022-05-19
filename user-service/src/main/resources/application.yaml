@@ -42,6 +42,6 @@ mybatis:
   type-aliases-package: cn.ve.user.dal.entity
 logging:
   gelf:
-    ip: 192.168.1.102
-    port: 1234
+    ip: 127.0.0.1
+    port: 12201
   file: classpath:logback-spring.xml

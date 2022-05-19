@@ -38,7 +38,6 @@
 
 ### TODO:
 
-1. graylog
 2. websocket
 3. 去掉swagger
 4. 国际化
@@ -55,13 +54,27 @@
 1. 一键安装docker
 curl -sSL https://get.daocloud.io/docker | sh
 2. 安装pgsql
-docker run --name postgres -e POSTGRES_PASSWORD=ve2021.Ve -p 10101:5432 --restart=always -v /var/data/postgresql/data:/var/lib/postgresql/data -d postgres
+docker run --name postgres -e POSTGRES_PASSWORD=ve2021.Ve -p 10101:5432 -v /var/data/postgresql/data:/var/lib/postgresql/data -d postgres
 3. 安装rabbitmq
-docker run -d --name rabbitmq --restart=always -p 10102:5672 -p 10201:15672 -v /var/data/rabbitmq/data:/var/lib/rabbitmq -e RABBITMQ_DEFAULT_VHOST=local  -e RABBITMQ_DEFAULT_USER=admin -e RABBITMQ_DEFAULT_PASS=admin rabbitmq:3.9.5-management
+docker run -d --name rabbitmq -p 10102:5672 -p 10201:15672 -v /var/data/rabbitmq/data:/var/lib/rabbitmq -e RABBITMQ_DEFAULT_VHOST=local  -e RABBITMQ_DEFAULT_USER=admin -e RABBITMQ_DEFAULT_PASS=admin rabbitmq:3.9.5-management
 4. 安装redis
-docker run -d --name redis -p 10103:6379 --restart=always redis --requirepass ve2021.Ve
+docker run -d --name redis -p 10103:6379 redis --requirepass ve2021.Ve
 5. 安装nacos
-docker  run --name nacos -d -p 10202:8848 --privileged=true --restart=always -e JVM_XMS=256m -e JVM_XMX=256m -e MODE=standalone -v /var/data/nacos/logs:/home/nacos/logs -v /var/data/nacos/init.d:/home/nacos/init.d nacos/nacos-server
+docker  run --name nacos -d -p 10202:8848 --privileged=true -e JVM_XMS=256m -e JVM_XMX=256m -e MODE=standalone -v /var/data/nacos/logs:/home/nacos/logs -v /var/data/nacos/init.d:/home/nacos/init.d nacos/nacos-server
+5. 安装graylog4.3(需要先创建mongodb4.4容器跟Elasticsearch7.17.2容器,root密码也是ve2021.Ve7654321)
+docker run\
+ -v /home/graylog/mongo_data:/data/db -v /etc/localtime:/etc/localtime:ro -v /usr/share/zoneinfo/Asia/Shanghai:/etc/timezone:ro\
+ -d --name mongo -p 27017:27017 mongo:4.4
+docker run\
+ -v /home/graylog/es_data:/usr/share/elasticsearch/data -v /etc/localtime:/etc/localtime:ro -v /usr/share/zoneinfo/Asia/Shanghai:/etc/timezone:ro -e TZ=Asia/Shanghai \
+ -d --name elasticsearch -e ES_JAVA_OPTS="-Xms512m -Xmx512m" -e "discovery.type=single-node" -p 9200:9200 -p 9300:9300 elasticsearch:7.17.2
+docker  run --name graylog -d -e TZ=Asia/Shanghai -v /etc/localtime:/etc/localtime:ro -v /usr/share/zoneinfo/Asia/Shanghai:/etc/timezone:ro \
+ -p 9000:9000 -p 1514:1514 -p 1514:1514/udp -p 12201:12201 -p 12201:12201/udp -p 5044:5044\
+ -v /home/graylog/config/graylog.conf:/etc/graylog/server/server.conf\
+ -e GRAYLOG_PASSWORD_SECRET=ve2021.Ve7654321 -e GRAYLOG_HTTP_EXTERNAL_URI=http://127.0.0.1:9000/\
+ -e GRAYLOG_ROOT_PASSWORD_SHA2=1e8a1a5c9fc22098f0b3e94e5a08a9d4a3796ce49cfdb2f9f92b2276dd38aa65\
+ --link mongo --link elasticsearch\
+  graylog/graylog:4.3
 6. nacos创建local命名空间
 7. 目前暂时可以启动各个服务了.其他还没看
 * todo...
